@@ -1,6 +1,4 @@
 <script setup>
-import exp from "node:constants";
-
 const { client } = usePrismic();
 
 const { data: about } = await useAsyncData("about", () => client.getSingle("about"));
@@ -8,7 +6,7 @@ const { data: about } = await useAsyncData("about", () => client.getSingle("abou
 </script>
 
 <template>
-    <div class="w-[449px] mx-auto pt-7 mb-4 homepage pb-[120px]">
+    <div class="w-[449px] mx-auto pt-7 mb-4 homepage">
         <section
             class="flex space-x-5 w-full mb-6"
         >

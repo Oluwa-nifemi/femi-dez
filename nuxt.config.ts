@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '/': {prerender: true},
     '/work': {prerender: true},
     '/about': {prerender: true},
+    '/colophon': {prerender: true},
     '/work/**': {prerender: true},
   }
 })

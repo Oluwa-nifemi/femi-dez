@@ -9,7 +9,7 @@ const workItems = work.value?.results || [];
 </script>
 
 <template>
-    <section class="pt-8 w-[452px] mx-auto pb-24">
+    <section class="pt-8 w-[452px] mx-auto">
         <ul class="grid gap-y-[124px]">
             <li v-for="work in workItems">
                 <figure>

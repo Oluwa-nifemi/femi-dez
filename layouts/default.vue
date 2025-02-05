@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen w-screen">
+    <div class="min-h-screen w-screen pb-32">
         <Navbar/>
         <slot/>
         <div class="fixed bottom-6 px-6 flex items-center justify-between w-screen">
