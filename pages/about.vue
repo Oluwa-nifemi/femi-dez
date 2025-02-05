@@ -5,7 +5,6 @@ const { client } = usePrismic();
 
 const { data: about } = await useAsyncData("about", () => client.getSingle("about"));
 
-console.log(about.value.data.experience)
 </script>
 
 <template>

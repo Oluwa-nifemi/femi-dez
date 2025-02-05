@@ -8,5 +8,11 @@ export default defineNuxtConfig({
 
   prismic: {
     endpoint: apiEndpoint || repositoryName
+  },
+  routeRules: {
+    '/': {prerender: true},
+    '/work': {prerender: true},
+    '/about': {prerender: true},
+    '/work/**': {prerender: true},
   }
 })
