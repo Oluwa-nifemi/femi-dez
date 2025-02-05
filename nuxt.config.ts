@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '/work': {prerender: true},
     '/about': {prerender: true},
     '/colophon': {prerender: true},
+    '/visuals': {prerender: true},
     '/work/**': {prerender: true},
   }
 })

@@ -22,8 +22,8 @@ const links = [
         label: "About"
     },
     {
-        link: "/notes",
-        label: "Notes"
+        link: "/visuals",
+        label: "Visuals"
     },
     {
         link: "/journal",
@@ -34,7 +34,7 @@ const links = [
 
 <template>
     <div class="pt-10 px-6">
-        <nav class="flex h-10 relative items-center">
+        <nav class="flex h-10 relative">
             <!-- I used absolute positioning for this and the dark mode toggle because trying to centralize the nav links relative
             to other content within the div is rather tricky it always veers off in a direction instead of having even margin when using mx-auto -->
             <div class="absolute left-0">

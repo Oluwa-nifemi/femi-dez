@@ -3,7 +3,7 @@ import type { Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.VisualImageRowSlice>([
     "slice",
     "index",
@@ -11,14 +11,17 @@ defineProps(
     "context",
   ]),
 );
+
+const hasLandscapeImage = props.slice.primary.media.some(media => media.variant === "Landscape");
 </script>
 
 <template>
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+    class="flex items-center h-[240px]"
+    :class="{'justify-between': hasLandscapeImage, 'justify-center gap-x-[200px]': !hasLandscapeImage}"
   >
-    Placeholder component for visual_image_row (variation:
-    {{ slice.variation }}) Slices
+      <prismic-image v-for="image in slice.primary.media" :field="image.media" class="h-full min-w-0"/>
   </section>
 </template>
