@@ -6,6 +6,23 @@
   "status": true,
   "json": {
     "Main": {
+      "intro_images": {
+        "type": "Group",
+        "config": {
+          "label": "Intro Images",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
       "description": {
         "type": "Text",
         "config": {

@@ -5,6 +5,21 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
+ * Item in *About → Intro Images*
+ */
+export interface AboutDocumentDataIntroImagesItem {
+  /**
+   * Image field in *About → Intro Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.intro_images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
  * Item in *About → Experience*
  */
 export interface AboutDocumentDataExperienceItem {
@@ -162,6 +177,17 @@ type AboutDocumentDataSlicesSlice = never;
  * Content for About documents
  */
 interface AboutDocumentData {
+  /**
+   * Intro Images field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.intro_images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  intro_images: prismic.GroupField<Simplify<AboutDocumentDataIntroImagesItem>>;
+
   /**
    * Description field in *About*
    *
@@ -1018,6 +1044,7 @@ declare module "@prismicio/client" {
     export type {
       AboutDocument,
       AboutDocumentData,
+      AboutDocumentDataIntroImagesItem,
       AboutDocumentDataExperienceItem,
       AboutDocumentDataCurrentlyReadingItem,
       AboutDocumentDataThingsLikeItem,
