@@ -1,14 +1,15 @@
 <template>
     <div class="bg-background min-h-screen w-screen">
         <Navbar/>
-    </div>
-    <div class="fixed bottom-6 px-6 flex items-center justify-between text-gray w-screen">
-        <nuxt-link to="/colophon">
-            Colophon/Imprint
-        </nuxt-link>
-        <p v-if="weatherInfo">
-            {{weatherInfo}}
-        </p>
+        <slot/>
+        <div class="fixed bottom-6 px-6 flex items-center justify-between text-gray w-screen">
+            <nuxt-link to="/colophon">
+                Colophon/Imprint
+            </nuxt-link>
+            <p v-if="weatherInfo">
+                {{weatherInfo}}
+            </p>
+        </div>
     </div>
 </template>
 <script setup>
