@@ -6,6 +6,7 @@
   --primary: #121212;
   --gray: #B4B4B4;
   --background: #F7F7F7;
+  overscroll-behavior: none;
 }
 
 .dark-mode{
@@ -23,6 +24,10 @@
 
 *{
   transition: color .2s, background-color 0.2s; /* Basic transition animation when changing light and dark mode */
+}
+
+html{
+  background-color: var(--background);
 }
 
 p, div, h1, h2, h3, h4, h5, h6, a{
