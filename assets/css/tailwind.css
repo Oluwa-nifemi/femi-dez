@@ -13,12 +13,24 @@
   --background: #121212;
 }
 
-@layer base{
+@font-face {
+  font-family: 'Sohne';
+  src: url('/fonts/TestSöhne-Regular.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 *{
-  font-size: 14px;
   transition: color .2s, background-color 0.2s; /* Basic transition animation when changing light and dark mode */
+}
+
+p, div, h1, h2, h3, h4, h5, h6, a{
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  font-family: "Sohne", sans-serif;
 }
 
 .nuxt-icon {
