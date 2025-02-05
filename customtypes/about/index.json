@@ -1,0 +1,169 @@
+{
+  "format": "page",
+  "id": "about",
+  "label": "About",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Description",
+          "placeholder": ""
+        }
+      },
+      "experience": {
+        "type": "Group",
+        "config": {
+          "label": "Experience",
+          "repeat": true,
+          "fields": {
+            "time": {
+              "type": "Text",
+              "config": {
+                "label": "Time",
+                "placeholder": "Ongoing / Year (eg 2024)"
+              }
+            },
+            "company": {
+              "type": "Link",
+              "config": {
+                "label": "Company",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "description": {
+              "type": "Text",
+              "config": {
+                "label": "Description",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "currently_reading": {
+        "type": "Group",
+        "config": {
+          "label": "Currently Reading",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "Name",
+                "placeholder": ""
+              }
+            },
+            "author": {
+              "type": "Text",
+              "config": {
+                "label": "Author",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "things_like": {
+        "type": "Group",
+        "config": {
+          "label": "Things I like",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": false,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "things_not_like": {
+        "type": "Group",
+        "config": {
+          "label": "Things I Don't Like",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": false,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "bucket_list": {
+        "type": "Group",
+        "config": {
+          "label": "Bucket List",
+          "repeat": true,
+          "fields": {
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            },
+            "done": {
+              "type": "Boolean",
+              "config": {
+                "label": "Done",
+                "placeholder_false": "false",
+                "placeholder_true": "true",
+                "default_value": false
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    }
+  }
+}

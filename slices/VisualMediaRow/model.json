@@ -1,0 +1,44 @@
+{
+  "id": "visual_image_row",
+  "type": "SharedSlice",
+  "name": "VisualMediaRow",
+  "description": "VisualImageRow",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "media": {
+          "type": "Group",
+          "config": {
+            "label": "Media",
+            "repeat": true,
+            "fields": {
+              "media": {
+                "type": "Image",
+                "config": {
+                  "label": "Media",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "variant": {
+                "type": "Select",
+                "config": {
+                  "label": "Variant",
+                  "placeholder": "",
+                  "options": ["Portrait", "Landscape"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

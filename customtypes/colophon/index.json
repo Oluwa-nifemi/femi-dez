@@ -1,0 +1,130 @@
+{
+  "format": "page",
+  "id": "colophon",
+  "label": "Colophon",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "typography": {
+        "type": "Group",
+        "config": {
+          "label": "Typography",
+          "repeat": false,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "description": {
+              "type": "Text",
+              "config": {
+                "label": "Description",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "photography": {
+        "type": "Text",
+        "config": {
+          "label": "Photography Description",
+          "placeholder": ""
+        }
+      },
+      "inspiration_description": {
+        "type": "Text",
+        "config": {
+          "label": "Inspiration Description",
+          "placeholder": ""
+        }
+      },
+      "inspiration_links": {
+        "type": "Group",
+        "config": {
+          "label": "Inspiration Links",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "good_people_description": {
+        "type": "Text",
+        "config": {
+          "label": "Good People Description",
+          "placeholder": ""
+        }
+      },
+      "good_people": {
+        "type": "Group",
+        "config": {
+          "label": "Good People",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  }
+}
