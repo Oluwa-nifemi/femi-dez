@@ -14,11 +14,15 @@ defineProps(
 </script>
 
 <template>
-  <section
+  <div
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+    v-if="slice.variation === 'imageRow'"
+    class="flex space-x-5 w-full"
   >
-    Placeholder component for work_content (variation: {{ slice.variation }})
-    Slices
-  </section>
+      <prismic-image class="flex-grow min-w-0" v-for="image in slice.primary.image_row" :field="image.image" />
+  </div>
+    <p v-else>
+        {{slice.primary.description}}
+    </p>
 </template>
