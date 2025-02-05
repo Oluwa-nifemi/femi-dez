@@ -5,6 +5,7 @@ export default {
         primary: 'var(--primary)',
         gray: 'var(--gray)',
         background: 'var(--background)',
+        red: 'var(--red)',
       }
     }
   },

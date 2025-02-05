@@ -191,13 +191,13 @@ interface AboutDocumentData {
   /**
    * Description field in *About*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: about.description
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  description: prismic.KeyTextField;
+  description: prismic.RichTextField;
 
   /**
    * Experience field in *About*
