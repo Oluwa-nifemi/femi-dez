@@ -2,17 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-  :root{
-    --primary: #121212;
-    --gray: #B4B4B4;
-    --background: #F7F7F7;
-  }
+:root{
+  --primary: #121212;
+  --gray: #B4B4B4;
+  --background: #F7F7F7;
+}
 
-  .dark{
-    --primary: #F7F7F7;
-    --background: #121212;
-  }
+.dark-mode{
+  --primary: #F7F7F7;
+  --background: #121212;
+}
+
+@layer base{
 }
 
 *{

@@ -1,8 +1,6 @@
 <template>
-    <div :class="{dark: isDarkMode}">
-        <div class="bg-background min-h-screen w-screen">
-            <Navbar/>
-        </div>
+    <div class="bg-background min-h-screen w-screen">
+        <Navbar/>
     </div>
     <div class="fixed bottom-6 px-6 flex items-center justify-between text-gray w-screen">
         <nuxt-link to="/colophon">
@@ -16,10 +14,6 @@
 <script setup>
 import Navbar from "~/components/navbar.vue";
 import {format} from "date-fns";
-const colorMode = useColorMode();
-
-const isDarkMode = computed(() => colorMode.value === 'dark');
-
 const { data: weatherInfo } = useAsyncData(async () => {
     const latitude = 52.9399 // Saskatchewan, Canada
     const longitude = -106.4509

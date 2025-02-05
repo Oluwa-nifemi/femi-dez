@@ -4,8 +4,6 @@ import ModeToggleLight from "assets/icon/mode-toggle-light.svg";
 
 const colorMode = useColorMode();
 
-const isDarkMode = computed(() => colorMode.value === 'dark');
-
 const toggleColorMode = () => {
     if(colorMode.preference === 'dark'){
         colorMode.preference = 'light'
@@ -52,12 +50,22 @@ const links = [
            </li>
         </ul>
         <button @click="toggleColorMode" class="self-start">
-            <ModeToggleDark  width="25" height="25" filled v-if="isDarkMode"/>
-            <ModeToggleLight width="25" height="25"  filled v-else/>
+            <ModeToggleDark class="dark-toggle"  width="25" height="25" filled/>
+            <ModeToggleLight class="light-toggle" width="25" height="25"  filled/>
         </button>
     </nav>
 </template>
 
 <style scoped>
+.dark-toggle, .light-toggle{
+    display: none;
+}
 
+.dark-mode .dark-toggle{
+    display: block;
+}
+
+.light-mode .light-toggle{
+    display: block;
+}
 </style>
