@@ -2,7 +2,6 @@
 const { client } = usePrismic();
 
 const { data: colophon } = await useAsyncData("about", () => client.getSingle("colophon"));
-console.log(colophon.value)
 </script>
 
 <template>
