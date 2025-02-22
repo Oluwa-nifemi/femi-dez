@@ -35,7 +35,7 @@ html{
 p, div, h1, h2, h3, h4, h5, h6, a{
   font-size: 14px;
   line-height: 20px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.0025px;
   color: var(--primary);
   font-family: "Sohne", sans-serif;
 }
