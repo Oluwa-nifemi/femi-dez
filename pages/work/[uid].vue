@@ -8,7 +8,7 @@ const { data: work } = useAsyncData(`work-${route.params.uid}`, () => client.get
 </script>
 
 <template>
-    <section class="pt-6 w-[452px] mx-auto" v-if="work">
+    <section class="pt-[56px] md:pt-6 px-6 md:w-[452px] mx-auto" v-if="work">
         <prismic-image :field="work.data.main_image" class="w-fit mb-6" />
         <p class="mb-6">
             {{work.data.description}}
@@ -19,7 +19,7 @@ const { data: work } = useAsyncData(`work-${route.params.uid}`, () => client.get
             :slices="work.data.slices1"
             class="space-y-6 mb-[72px]"
         />
-        <div class="flex gap-x-[84px]">
+        <div class="flex gap-y-6 gap-x-[84px] flex-col md:flex-row">
             <div>
                 <p class="mb-2 text-gray">
                     Year

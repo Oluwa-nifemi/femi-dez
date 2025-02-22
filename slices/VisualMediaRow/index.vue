@@ -19,9 +19,9 @@ const hasLandscapeImage = props.slice.primary.media.some(media => media.variant 
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="flex items-center h-[240px]"
+    class="flex flex-col md:flex-row items-center md:h-[240px] gap-y-[100px]"
     :class="{'justify-between': hasLandscapeImage, 'justify-center gap-x-[200px]': !hasLandscapeImage}"
   >
-      <prismic-image v-for="image in slice.primary.media" :field="image.media" class="h-full min-w-0"/>
+      <prismic-image v-for="image in slice.primary.media" :field="image.media" class="h-full min-w-0" :class="{'max-w-[193px] md:max-w-unset': image.variant === 'Portrait'}"/>
   </section>
 </template>

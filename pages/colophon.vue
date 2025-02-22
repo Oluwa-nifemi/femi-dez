@@ -5,8 +5,8 @@ const { data: colophon } = await useAsyncData("about", () => client.getSingle("c
 </script>
 
 <template>
-    <div class="w-[449px] mx-auto pt-7 mb-4 homepage" v-if="colophon">
-        <section class="mb-9">
+    <div class="md:w-[449px] mx-auto pt-[56px] md:pt-6 px-6 mb-4 homepage space-y-6 md:space-y-9" v-if="colophon">
+        <section>
             <p class="text-gray mb-3">
                 Typography
             </p>
@@ -15,7 +15,7 @@ const { data: colophon } = await useAsyncData("about", () => client.getSingle("c
                 {{colophon.data.typography[0]!.description}}
             </p>
         </section>
-        <section class="mb-9">
+        <section>
             <p class="text-gray mb-3">
                 Photography
             </p>
@@ -23,7 +23,7 @@ const { data: colophon } = await useAsyncData("about", () => client.getSingle("c
                 {{colophon.data.photography}}
             </p>
         </section>
-        <section class="mb-9">
+        <section>
             <p class="text-gray mb-3">
                 Technicalities
             </p>
@@ -32,7 +32,7 @@ const { data: colophon } = await useAsyncData("about", () => client.getSingle("c
                 Developed by <a href="https://www.linkedin.com/in/oluwanifemi-adeyemi-600758174/" target="_blank" class="underline">Oluwanifemi Adeyemi</a>
             </p>
         </section>
-        <section class="mb-9 space-y-3">
+        <section class="space-y-3">
             <p class="text-gray">
                 Inspiration
             </p>
@@ -43,7 +43,7 @@ const { data: colophon } = await useAsyncData("about", () => client.getSingle("c
                 {{link.link.text}}
             </a>
         </section>
-        <section class="mb-9 space-y-3">
+        <section class="space-y-3">
             <p class="text-gray">
                 Good people
             </p>

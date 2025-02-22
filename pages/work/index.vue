@@ -9,8 +9,8 @@ const workItems = work.value?.results || [];
 </script>
 
 <template>
-    <section class="pt-8 w-[452px] mx-auto">
-        <ul class="grid gap-y-[124px]">
+    <section class="pt-[56px] md:pt-8 max-w-[452px] mx-auto">
+        <ul class="grid md:gap-y-[124px] px-6 gap-y-6">
             <li v-for="work in workItems">
                 <figure>
                     <prismic-image :field="work.data.main_image" class="w-fit mb-2" />

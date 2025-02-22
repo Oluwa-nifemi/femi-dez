@@ -2,7 +2,7 @@
     <div class="min-h-screen w-screen pb-32">
         <Navbar/>
         <slot/>
-        <div class="fixed bottom-6 px-6 flex items-center justify-between w-screen">
+        <div class="fixed bottom-6 px-6 flex md:items-center justify-between w-screen z-30 flex-col md:flex-row gap-y-1">
             <nuxt-link to="/colophon" class="text-gray">
                 Colophon/Imprint
             </nuxt-link>

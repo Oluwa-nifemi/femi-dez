@@ -11,21 +11,21 @@ const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => 
 </script>
 
 <template>
-    <div class="w-[449px] mx-auto pt-7 mb-4 homepage">
+    <div class="pt-[56px] md:pt-7 px-6 md:w-[449px] mx-auto mb-4 homepage">
         <section
-            class="flex space-x-5 w-full mb-6"
+            class="flex gap-x-3 md:gap-x-5 w-full mb-6"
         >
             <prismic-image class="flex-grow min-w-0" v-for="image in about.data.intro_images" :field="image.image"/>
         </section>
-        <section class="space-y-5 mb-[72px]">
+        <section class="space-y-5 mb-8 md:mb-[72px]">
             <prismic-rich-text :field="about.data.description"/>
         </section>
-        <section class="mb-[72px]">
-            <p class="text-gray mb-6">
+        <section class="mb-8 md:mb-[72px]">
+            <p class="text-gray mb-3 md:mb-6">
                 Experience
             </p>
-            <ul class="grid gap-y-9">
-                <li class="flex" v-for="experience in about.data.experience">
+            <ul class="grid gap-y-6 md:gap-y-9">
+                <li class="flex flex-col md:flex-row gap-y-3" v-for="experience in about.data.experience">
                     <p class="w-[96px] flex-shrink-0 text-gray mr-5">
                         {{ experience.time }}
                     </p>
@@ -43,11 +43,11 @@ const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => 
                 </li>
             </ul>
         </section>
-        <section class="mb-[72px]">
+        <section class="mb-8 md:mb-[72px]">
             <p class="mb-4">
                 Currently reading
             </p>
-            <div class="grid grid-cols-2 gap-x-2.5 gap-y-4">
+            <div class="grid md:grid-cols-2 gap-x-2.5 gap-y-3">
                 <div v-for="book in about.data.currently_reading" class="flex space-x-2 items-center">
                     <prismic-image :field="book.image" class="w-8 h-12 rounded border-[0.5px] border-gray"/>
                     <div>

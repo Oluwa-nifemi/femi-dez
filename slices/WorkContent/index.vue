@@ -18,7 +18,7 @@ defineProps(
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     v-if="slice.variation === 'imageRow'"
-    class="flex space-x-5 w-full"
+    class="flex gap-x-4 md:gap-x-5 w-full"
   >
       <prismic-image class="flex-grow min-w-0" v-for="image in slice.primary.image_row" :field="image.image" />
   </div>
