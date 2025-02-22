@@ -1,8 +1,13 @@
 <script setup>
-const { client } = usePrismic();
+const {client} = usePrismic();
 
-const { data: about } = await useAsyncData("about", () => client.getSingle("about"));
+const {data: about} = await useAsyncData("about", () => client.getSingle("about"));
 
+const likePairsLength = Math.max(about.value.data.things_like.length, about.value.data.things_not_like.length);
+const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => [
+    about.value.data.things_like[index],
+    about.value.data.things_not_like[index]
+])
 </script>
 
 <template>
@@ -10,7 +15,7 @@ const { data: about } = await useAsyncData("about", () => client.getSingle("abou
         <section
             class="flex space-x-5 w-full mb-6"
         >
-            <prismic-image class="flex-grow min-w-0" v-for="image in about.data.intro_images" :field="image.image" />
+            <prismic-image class="flex-grow min-w-0" v-for="image in about.data.intro_images" :field="image.image"/>
         </section>
         <section class="space-y-5 mb-[72px]">
             <prismic-rich-text :field="about.data.description"/>
@@ -20,22 +25,22 @@ const { data: about } = await useAsyncData("about", () => client.getSingle("abou
                 Experience
             </p>
             <ul class="grid gap-y-9">
-               <li class="flex" v-for="experience in about.data.experience">
-                   <p class="w-[96px] flex-shrink-0 text-gray mr-5">
-                       {{experience.time}}
-                   </p>
-                   <div>
-                       <a v-if="!!experience.company.url" :href="experience.company.url" target="_blank">
-                         {{experience.company.text}}
-                       </a>
-                       <p v-else>
-                         {{experience.company.text}}
-                       </p>
-                       <p class="mt-2">
-                           {{experience.description}}
-                       </p>
-                   </div>
-               </li>
+                <li class="flex" v-for="experience in about.data.experience">
+                    <p class="w-[96px] flex-shrink-0 text-gray mr-5">
+                        {{ experience.time }}
+                    </p>
+                    <div>
+                        <a v-if="!!experience.company.url" :href="experience.company.url" target="_blank" class="underline">
+                            {{ experience.company.text }}
+                        </a>
+                        <p v-else>
+                            {{ experience.company.text }}
+                        </p>
+                        <p class="mt-2 text-gray">
+                            {{ experience.description }}
+                        </p>
+                    </div>
+                </li>
             </ul>
         </section>
         <section class="mb-[72px]">
@@ -47,30 +52,44 @@ const { data: about } = await useAsyncData("about", () => client.getSingle("abou
                     <prismic-image :field="book.image" class="w-8 h-12 rounded border-[0.5px] border-gray"/>
                     <div>
                         <p>
-                          {{book.name}}
+                            {{ book.name }}
                         </p>
                         <p class="text-gray">
-                          {{book.author}}
+                            {{ book.author }}
                         </p>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="grid grid-cols-2 gap-x-8 mb-[72px]">
-            <div class="space-y-3">
+        <section class="grid grid-cols-2 gap-x-8 mb-[72px] gap-y-3">
+            <p class="text-gray">
+                Things i like
+            </p>
+            <p class="text-gray">
+                Things i don’t like
+            </p>
+            <template v-for="[like, dislike] in preferencePairs">
+                <p>
+                    {{like?.label}}
+                </p>
+                <p>
+                    {{dislike?.label}}
+                </p>
+            </template>
+            <div class="space-y-3 hidden">
                 <p class="text-gray">
                     Things i like
                 </p>
                 <p v-for="thing in about.data.things_like">
-                    {{thing.label}}
+                    {{ thing.label }}
                 </p>
             </div>
-            <div class="space-y-3">
+            <div class="space-y-3 hidden">
                 <p class="text-gray">
                     Things i don’t like
                 </p>
                 <p v-for="thing in about.data.things_not_like">
-                    {{thing.label}}
+                    {{ thing.label }}
                 </p>
             </div>
         </section>
@@ -79,7 +98,7 @@ const { data: about } = await useAsyncData("about", () => client.getSingle("abou
                 Bucket list
             </p>
             <p v-for="item in about.data.bucket_list" class="strike" :class="{'line-through text-red': item.done}">
-                {{item.text}}
+                {{ item.text }}
             </p>
         </section>
     </div>

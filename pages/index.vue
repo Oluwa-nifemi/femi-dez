@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[469px] mx-auto pt-7 mb-4 homepage">
+    <div class="w-[469px] mx-auto pt-[42px] mb-4 homepage">
         <section class="main-text mb-6">
             <prismic-rich-text :field="home.data.main_text"/>
         </section>
