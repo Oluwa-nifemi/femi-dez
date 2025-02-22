@@ -11,9 +11,11 @@
     "slicemachine": "start-slicemachine"
   },
   "dependencies": {
+    "@nuxt/eslint": "1.1.0",
     "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/tailwindcss": "6.13.1",
     "date-fns": "^4.1.0",
+    "eslint": "^9.0.0",
     "nuxt": "^3.15.4",
     "nuxt-svgo": "4.0.14",
     "vue": "latest",
