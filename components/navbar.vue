@@ -26,8 +26,8 @@ const links = [
         label: "Visuals"
     },
     {
-        link: "/journal",
-        label: "Journal"
+        link: "/catalogue",
+        label: "Catalogue"
     },
 ]
 

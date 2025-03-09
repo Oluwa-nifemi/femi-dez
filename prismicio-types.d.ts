@@ -282,6 +282,164 @@ interface AboutDocumentData {
 export type AboutDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
+type CatalogDocumentDataSlicesSlice = CatalogItemSlice;
+
+/**
+ * Content for Catalog documents
+ */
+interface CatalogDocumentData {
+  /**
+   * Name field in *Catalog*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Description field in *Catalog*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Catalog*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<CatalogDocumentDataSlicesSlice>;
+}
+
+/**
+ * Catalog document from Prismic
+ *
+ * - **API ID**: `catalog`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CatalogDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CatalogDocumentData>,
+    "catalog",
+    Lang
+  >;
+
+/**
+ * Item in *Catalog Page → Catalogs*
+ */
+export interface CatalogPageDocumentDataCatalogsItem {
+  /**
+   * catalog field in *Catalog Page → Catalogs*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_page.catalogs[].catalog
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  catalog: prismic.ContentRelationshipField<"catalog">;
+}
+
+type CatalogPageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Catalog Page documents
+ */
+interface CatalogPageDocumentData {
+  /**
+   * Description field in *Catalog Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_page.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Catalogs field in *Catalog Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_page.catalogs[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  catalogs: prismic.GroupField<Simplify<CatalogPageDocumentDataCatalogsItem>>;
+
+  /**
+   * Slice Zone field in *Catalog Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<CatalogPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *Catalog Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: catalog_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Catalog Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: catalog_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Catalog Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Catalog Page document from Prismic
+ *
+ * - **API ID**: `catalog_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CatalogPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CatalogPageDocumentData>,
+    "catalog_page",
+    Lang
+  >;
+
 /**
  * Item in *Colophon → Typography*
  */
@@ -813,10 +971,82 @@ export type WorkDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | AboutDocument
+  | CatalogDocument
+  | CatalogPageDocument
   | ColophonDocument
   | HomepageDocument
   | VisualDocument
   | WorkDocument;
+
+/**
+ * Item in *CatalogItem → Default → Primary → Items*
+ */
+export interface CatalogItemSliceDefaultPrimaryItemsItem {
+  /**
+   * Link field in *CatalogItem → Default → Primary → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_item.default.primary.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Primary content in *CatalogItem → Default → Primary*
+ */
+export interface CatalogItemSliceDefaultPrimary {
+  /**
+   * Title field in *CatalogItem → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_item.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Items field in *CatalogItem → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_item.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<Simplify<CatalogItemSliceDefaultPrimaryItemsItem>>;
+}
+
+/**
+ * Default variation for CatalogItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CatalogItemSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CatalogItemSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CatalogItem*
+ */
+type CatalogItemSliceVariation = CatalogItemSliceDefault;
+
+/**
+ * CatalogItem Shared Slice
+ *
+ * - **API ID**: `catalog_item`
+ * - **Description**: CatalogItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CatalogItemSlice = prismic.SharedSlice<
+  "catalog_item",
+  CatalogItemSliceVariation
+>;
 
 /**
  * Item in *VisualMediaRow → Default → Primary → Media*
@@ -1051,6 +1281,13 @@ declare module "@prismicio/client" {
       AboutDocumentDataThingsNotLikeItem,
       AboutDocumentDataBucketListItem,
       AboutDocumentDataSlicesSlice,
+      CatalogDocument,
+      CatalogDocumentData,
+      CatalogDocumentDataSlicesSlice,
+      CatalogPageDocument,
+      CatalogPageDocumentData,
+      CatalogPageDocumentDataCatalogsItem,
+      CatalogPageDocumentDataSlicesSlice,
       ColophonDocument,
       ColophonDocumentData,
       ColophonDocumentDataTypographyItem,
@@ -1071,6 +1308,11 @@ declare module "@prismicio/client" {
       WorkDocumentDataSlicesSlice,
       WorkDocumentDataSlices1Slice,
       AllDocumentTypes,
+      CatalogItemSlice,
+      CatalogItemSliceDefaultPrimaryItemsItem,
+      CatalogItemSliceDefaultPrimary,
+      CatalogItemSliceVariation,
+      CatalogItemSliceDefault,
       VisualImageRowSlice,
       VisualImageRowSliceDefaultPrimaryMediaItem,
       VisualImageRowSliceDefaultPrimary,

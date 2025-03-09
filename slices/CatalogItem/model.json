@@ -1,0 +1,46 @@
+{
+  "id": "catalog_item",
+  "type": "SharedSlice",
+  "name": "CatalogItem",
+  "description": "CatalogItem",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "Items",
+            "repeat": true,
+            "fields": {
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": false,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
