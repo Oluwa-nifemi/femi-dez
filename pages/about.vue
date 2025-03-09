@@ -25,8 +25,8 @@ const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => 
                 Experience
             </p>
             <ul class="grid gap-y-6 md:gap-y-9">
-                <li class="flex flex-col md:flex-row gap-y-3" v-for="experience in about.data.experience">
-                    <p class="w-[96px] flex-shrink-0 text-gray mr-5">
+                <li class="flex flex-col md:flex-row gap-y-2" v-for="experience in about.data.experience">
+                    <p class="w-[96px] flex-shrink-0 mr-5">
                         {{ experience.time }}
                     </p>
                     <div>
@@ -61,35 +61,21 @@ const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => 
                 </div>
             </div>
         </section>
-        <section class="grid grid-cols-2 gap-x-8 mb-[72px] gap-y-3">
-            <p class="text-gray">
-                Things i like
-            </p>
-            <p class="text-gray">
-                Things i don’t like
-            </p>
-            <template v-for="[like, dislike] in preferencePairs">
-                <p>
-                    {{like?.label}}
-                </p>
-                <p>
-                    {{dislike?.label}}
-                </p>
-            </template>
-            <div class="space-y-3 hidden">
+        <section class="grid md:grid-cols-2 gap-y-5 gap-x-8 mb-8 md:mb-[72px]">
+            <div class="space-y-3">
                 <p class="text-gray">
                     Things i like
                 </p>
                 <p v-for="thing in about.data.things_like">
-                    {{ thing.label }}
+                    {{thing.label}}
                 </p>
             </div>
-            <div class="space-y-3 hidden">
+            <div class="space-y-3">
                 <p class="text-gray">
                     Things i don’t like
                 </p>
                 <p v-for="thing in about.data.things_not_like">
-                    {{ thing.label }}
+                    {{thing.label}}
                 </p>
             </div>
         </section>
