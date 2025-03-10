@@ -9,7 +9,7 @@ const workItems = work.value?.results || [];
 </script>
 
 <template>
-    <ul class="grid md:gap-y-[124px] px-6 gap-y-6">
+    <ul class="grid md:gap-y-[124px] gap-y-6">
         <li v-for="work in workItems">
             <figure>
                 <prismic-image :field="work.data.main_image" class="w-fit mb-2"/>
