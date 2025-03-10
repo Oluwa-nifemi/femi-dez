@@ -11,10 +11,12 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': {prerender: true},
-    '/work': {prerender: true},
     '/about': {prerender: true},
     '/colophon': {prerender: true},
     '/visuals': {prerender: true},
+    '/work': {prerender: true},
     '/work/**': {prerender: true},
+    '/catalogue': {prerender: true},
+    '/catalogue/**': {prerender: true},
   }
 })
