@@ -61,6 +61,31 @@ export interface AboutDocumentDataExperienceItem {
 }
 
 /**
+ * Item in *About → Awards*
+ */
+export interface AboutDocumentDataAwardsItem {
+  /**
+   * Time field in *About → Awards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.awards[].time
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  time: prismic.KeyTextField;
+
+  /**
+   * Link field in *About → Awards*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.awards[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
  * Item in *About → Currently Reading*
  */
 export interface AboutDocumentDataCurrentlyReadingItem {
@@ -100,16 +125,6 @@ export interface AboutDocumentDataCurrentlyReadingItem {
  */
 export interface AboutDocumentDataThingsLikeItem {
   /**
-   * Label field in *About → Things I like*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.things_like[].label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  label: prismic.KeyTextField;
-
-  /**
    * Link field in *About → Things I like*
    *
    * - **Field Type**: Link
@@ -125,21 +140,41 @@ export interface AboutDocumentDataThingsLikeItem {
  */
 export interface AboutDocumentDataThingsNotLikeItem {
   /**
-   * Label field in *About → Things I Don't Like*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.things_not_like[].label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  label: prismic.KeyTextField;
-
-  /**
    * Link field in *About → Things I Don't Like*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: about.things_not_like[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *About → More things I like*
+ */
+export interface AboutDocumentDataMoreThingsLikeItem {
+  /**
+   * Link field in *About → More things I like*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.more_things_like[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *About → More things I don’t like*
+ */
+export interface AboutDocumentDataMoreThingsDontLikeItem {
+  /**
+   * Link field in *About → More things I don’t like*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.more_things_dont_like[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
@@ -211,6 +246,17 @@ interface AboutDocumentData {
   experience: prismic.GroupField<Simplify<AboutDocumentDataExperienceItem>>;
 
   /**
+   * Awards field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.awards[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  awards: prismic.GroupField<Simplify<AboutDocumentDataAwardsItem>>;
+
+  /**
    * Currently Reading field in *About*
    *
    * - **Field Type**: Group
@@ -245,6 +291,32 @@ interface AboutDocumentData {
    */
   things_not_like: prismic.GroupField<
     Simplify<AboutDocumentDataThingsNotLikeItem>
+  >;
+
+  /**
+   * More things I like field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.more_things_like[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  more_things_like: prismic.GroupField<
+    Simplify<AboutDocumentDataMoreThingsLikeItem>
+  >;
+
+  /**
+   * More things I don’t like field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.more_things_dont_like[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  more_things_dont_like: prismic.GroupField<
+    Simplify<AboutDocumentDataMoreThingsDontLikeItem>
   >;
 
   /**
@@ -309,6 +381,17 @@ interface CatalogDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   description: prismic.KeyTextField;
+
+  /**
+   * Cover Image field in *Catalog*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog.cover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover_image: prismic.ImageField<never>;
 
   /**
    * Slice Zone field in *Catalog*
@@ -625,6 +708,93 @@ export type ColophonDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<ColophonDocumentData>,
     "colophon",
+    Lang
+  >;
+
+type ExplorationDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Exploration documents
+ */
+interface ExplorationDocumentData {
+  /**
+   * Media field in *Exploration*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exploration.media
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  media: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Caption field in *Exploration*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exploration.caption
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  caption: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Exploration*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exploration.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ExplorationDocumentDataSlicesSlice> /**
+   * Meta Title field in *Exploration*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: exploration.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Exploration*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: exploration.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Exploration*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exploration.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Exploration document from Prismic
+ *
+ * - **API ID**: `exploration`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ExplorationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ExplorationDocumentData>,
+    "exploration",
     Lang
   >;
 
@@ -974,6 +1144,7 @@ export type AllDocumentTypes =
   | CatalogDocument
   | CatalogPageDocument
   | ColophonDocument
+  | ExplorationDocument
   | HomepageDocument
   | VisualDocument
   | WorkDocument;
@@ -991,6 +1162,16 @@ export interface CatalogItemSliceDefaultPrimaryItemsItem {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Image field in *CatalogItem → Default → Primary → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog_item.default.primary.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
 }
 
 /**
@@ -1276,9 +1457,12 @@ declare module "@prismicio/client" {
       AboutDocumentData,
       AboutDocumentDataIntroImagesItem,
       AboutDocumentDataExperienceItem,
+      AboutDocumentDataAwardsItem,
       AboutDocumentDataCurrentlyReadingItem,
       AboutDocumentDataThingsLikeItem,
       AboutDocumentDataThingsNotLikeItem,
+      AboutDocumentDataMoreThingsLikeItem,
+      AboutDocumentDataMoreThingsDontLikeItem,
       AboutDocumentDataBucketListItem,
       AboutDocumentDataSlicesSlice,
       CatalogDocument,
@@ -1294,6 +1478,9 @@ declare module "@prismicio/client" {
       ColophonDocumentDataInspirationLinksItem,
       ColophonDocumentDataGoodPeopleItem,
       ColophonDocumentDataSlicesSlice,
+      ExplorationDocument,
+      ExplorationDocumentData,
+      ExplorationDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataLinksItem,

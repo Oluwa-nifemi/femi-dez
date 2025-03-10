@@ -1,5 +1,5 @@
 <template>
-    <base-layout>
+    <base-layout wide>
         <slot/>
     </base-layout>
 </template>

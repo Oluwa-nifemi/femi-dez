@@ -33,6 +33,10 @@ const links = [
 
 const showMobileNav = ref(false);
 const toggleMobileNav = () => showMobileNav.value = !showMobileNav.value;
+
+defineProps({
+    weatherInfo: String
+})
 </script>
 
 <template>
@@ -63,7 +67,7 @@ const toggleMobileNav = () => showMobileNav.value = !showMobileNav.value;
                 Menu
             </button>
         </nav>
-        <aside class="fixed top-0 left-0 h-dvh w-full z-20 bg-background pt-[60px] px-6" :class="{'pointer-events-none opacity-0': !showMobileNav}">
+        <aside class="fixed top-0 left-0 h-dvh w-full z-20 bg-background pt-[60px] px-6 flex flex-col pb-10" :class="{'pointer-events-none opacity-0': !showMobileNav}">
             <div class="flex justify-between items-start">
                 <div>
                     <nuxt-link to="/" class="mb-2 text-primary" @click="toggleMobileNav">
@@ -84,6 +88,20 @@ const toggleMobileNav = () => showMobileNav.value = !showMobileNav.value;
                     </nuxt-link>
                 </li>
             </ul>
+            <div class="mt-auto flex items-center justify-between">
+                <div class="grid gap-y-1">
+                    <nuxt-link to="/colophon" class="text-gray underline">
+                        Colophon
+                    </nuxt-link>
+                    <p v-if="weatherInfo" class="text-gray">
+                        {{weatherInfo}}
+                    </p>
+                </div>
+                <button @click="toggleColorMode">
+                    <ModeToggleDark class="dark-toggle"  width="25" height="25" filled/>
+                    <ModeToggleLight class="light-toggle" width="25" height="25"  filled/>
+                </button>
+            </div>
         </aside>
     </div>
 </template>

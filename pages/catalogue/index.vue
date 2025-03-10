@@ -1,59 +1,42 @@
 <script setup lang="ts">
-import { Content } from "@prismicio/client";
-import {format} from "date-fns";
+import {useAsyncData} from "#app";
+import format from "date-fns/format";
 
 const { client } = usePrismic();
 
-const { data: cataloguePage, error } = useAsyncData("works", () => {
-    return client.getSingle("catalog_page", {
-            graphQuery: `
-        {
-          catalog_page {
-            description
-            catalogs {
-              catalog {
-                ...on catalog {
-                  name
-                  description
-                }
-              }
-            }
-          }
-        }
-            `
-        }
-    )
+const { data: cataloguePage } = useAsyncData("catalog_page", () => {
+    return client.getSingle("catalog_page")
 })
 
-const linkedCatalogues = cataloguePage.value?.data.catalogs as Array<{
-    catalog: {
-        data: Pick<Content.CatalogDocument["data"], "name" | "description">,
-        uid: Content.CatalogDocument["uid"]
-    }
-}>
+const { data: catalogs } = useAsyncData("catalogues", async () => {
+    return client.getByType("catalog", {
+        orderings: {
+            field: 'document.last_publication_date',
+            direction: "desc"
+        }
+    });
+});
 
-const lastUpdated = cataloguePage.value?.last_publication_date;
 const description = cataloguePage.value?.data.description;
 </script>
 
 <template>
-    <div class="pt-[56px] md:pt-7 md:w-[449px] mx-auto mb-4">
-        <p class="mb-2">
-            {{description}}
-        </p>
-        <p class="text-gray mb-[72px]" v-if="lastUpdated">
-            Last updated {{format(new Date(lastUpdated), 'MMM dd, yyyy')}}
-        </p>
-        <div class="flex flex-col gap-y-8">
-            <article v-for="{catalog} in linkedCatalogues">
-                <nuxt-link class="text-gray underline grid gap-y-3" :to="`/catalogue/${catalog.uid}`">
-                    {{catalog.data.name}}
-                </nuxt-link>
-                <p>
-                    {{catalog.data.description}}
-                </p>
-            </article>
-        </div>
+    <p class="mb-8">
+        {{description}}
+    </p>
+    <div class="flex flex-col gap-y-8">
+        <article v-for="catalog in catalogs?.results" class="relative grid gap-y-3">
+            <p class="text-gray absolute left-[-236px]">
+                {{format(new Date(catalog.last_publication_date), 'MMM dd, yyyy')}}
+            </p>
+            <nuxt-link class="underline" :to="`/catalogue/${catalog.uid}`">
+                {{catalog.data.name}}
+            </nuxt-link>
+            <prismic-image :field="catalog.data.cover_image" class="mb-3 max-w-full min-w-0"/>
+            <p>
+                {{catalog.data.description}}
+            </p>
+        </article>
     </div>
 </template>
 

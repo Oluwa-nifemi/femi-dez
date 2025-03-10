@@ -5,7 +5,7 @@ const { data: colophon } = await useAsyncData("about", () => client.getSingle("c
 </script>
 
 <template>
-    <div class="md:w-[449px] mx-auto pt-[56px] md:pt-6 px-6 mb-4 homepage space-y-6 md:space-y-9" v-if="colophon">
+    <div class="space-y-6 md:space-y-9" v-if="colophon">
         <section>
             <p class="text-gray mb-3">
                 Typography

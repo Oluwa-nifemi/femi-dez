@@ -2,25 +2,17 @@
 const {client} = usePrismic();
 
 const {data: about} = await useAsyncData("about", () => client.getSingle("about"));
-
-const likePairsLength = Math.max(about.value.data.things_like.length, about.value.data.things_not_like.length);
-const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => [
-    about.value.data.things_like[index],
-    about.value.data.things_not_like[index]
-])
 </script>
 
 <template>
-    <div class="pt-[56px] md:pt-7 px-6 md:w-[449px] mx-auto mb-4 homepage">
-        <section
-            class="flex gap-x-3 md:gap-x-5 w-full mb-6"
-        >
-            <prismic-image class="flex-grow min-w-0" v-for="image in about.data.intro_images" :field="image.image"/>
-        </section>
-        <section class="space-y-5 mb-8 md:mb-[72px]">
-            <prismic-rich-text :field="about.data.description"/>
-        </section>
-        <section class="mb-8 md:mb-[72px]">
+    <section class="flex gap-x-3 md:gap-x-5 w-full mb-6">
+        <prismic-image class="flex-grow min-w-0" v-for="image in about.data.intro_images" :field="image.image"/>
+    </section>
+    <section class="space-y-3 mb-8 md:mb-[57px]">
+        <prismic-rich-text :field="about.data.description"/>
+    </section>
+    <div class="flex flex-col gap-y-8 md:gap-y-[72px]">
+        <section>
             <p class="text-gray mb-3 md:mb-6">
                 Experience
             </p>
@@ -30,7 +22,8 @@ const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => 
                         {{ experience.time }}
                     </p>
                     <div>
-                        <a v-if="!!experience.company.url" :href="experience.company.url" target="_blank" class="underline">
+                        <a v-if="!!experience.company.url" :href="experience.company.url" target="_blank"
+                           class="underline">
                             {{ experience.company.text }}
                         </a>
                         <p v-else>
@@ -43,7 +36,24 @@ const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => 
                 </li>
             </ul>
         </section>
-        <section class="mb-8 md:mb-[72px]">
+        <section>
+            <p class="text-gray mb-3 md:mb-6">
+                Awards
+            </p>
+            <ul class="grid gap-y-6 md:gap-y-9">
+                <li class="flex flex-col md:flex-row gap-y-2" v-for="award in about.data.awards">
+                    <p class="w-[96px] flex-shrink-0 mr-5">
+                        {{ award.time }}
+                    </p>
+                    <div>
+                        <a :href="award.link.url" target="_blank" class="underline">
+                            {{ award.link.text }}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section>
             <p class="mb-4">
                 Currently reading
             </p>
@@ -61,13 +71,13 @@ const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => 
                 </div>
             </div>
         </section>
-        <section class="grid md:grid-cols-2 gap-y-5 gap-x-8 mb-8 md:mb-[72px]">
+        <section class="grid md:grid-cols-2 gap-y-5 gap-x-8">
             <div class="space-y-3">
                 <p class="text-gray">
                     Things i like
                 </p>
                 <p v-for="thing in about.data.things_like">
-                    {{thing.label}}
+                    {{ thing.label }}
                 </p>
             </div>
             <div class="space-y-3">
@@ -75,9 +85,35 @@ const preferencePairs = Array.from({length: likePairsLength}).map((_, index) => 
                     Things i don’t like
                 </p>
                 <p v-for="thing in about.data.things_not_like">
-                    {{thing.label}}
+                    {{ thing.label }}
                 </p>
             </div>
+        </section>
+        <section class="space-y-3">
+            <p class="text-gray">
+                More things I like
+            </p>
+            <slot v-for="thing in about.data.more_things_like">
+                <a v-if="thing.link.url" :href="thing.link.url" target="_blank">
+                    {{thing.link.text}}
+                </a>
+                <p v-else>
+                    {{thing.link.text}}
+                </p>
+            </slot>
+        </section>
+        <section class="space-y-3">
+            <p class="text-gray">
+                More things I don’t like
+            </p>
+            <slot v-for="thing in about.data.more_things_dont_like">
+                <a v-if="thing.link.url" :href="thing.link.url" target="_blank">
+                    {{thing.link.text}}
+                </a>
+                <p v-else>
+                    {{thing.link.text}}
+                </p>
+            </slot>
         </section>
         <section class="space-y-3">
             <p class="text-gray">

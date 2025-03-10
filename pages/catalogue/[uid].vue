@@ -9,7 +9,7 @@ const { data: catalog } = useAsyncData(`catalog-${route.params.uid}`, () => clie
 </script>
 
 <template>
-    <div class="pt-[56px] md:pt-7 md:w-[449px] mx-auto mb-4" v-if="catalog">
+    <div v-if="catalog">
         <p class="mb-2">
             {{catalog.data.name}}
         </p>

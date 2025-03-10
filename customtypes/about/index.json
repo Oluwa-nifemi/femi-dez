@@ -66,6 +66,33 @@
           }
         }
       },
+      "awards": {
+        "type": "Group",
+        "config": {
+          "label": "Awards",
+          "repeat": true,
+          "fields": {
+            "time": {
+              "type": "Text",
+              "config": {
+                "label": "Time",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": false,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
       "currently_reading": {
         "type": "Group",
         "config": {
@@ -103,13 +130,6 @@
           "label": "Things I like",
           "repeat": true,
           "fields": {
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": ""
-              }
-            },
             "link": {
               "type": "Link",
               "config": {
@@ -117,7 +137,7 @@
                 "placeholder": "",
                 "select": null,
                 "allowTargetBlank": true,
-                "allowText": false,
+                "allowText": true,
                 "repeat": false
               }
             }
@@ -130,13 +150,6 @@
           "label": "Things I Don't Like",
           "repeat": true,
           "fields": {
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": ""
-              }
-            },
             "link": {
               "type": "Link",
               "config": {
@@ -144,7 +157,47 @@
                 "placeholder": "",
                 "select": null,
                 "allowTargetBlank": true,
-                "allowText": false,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "more_things_like": {
+        "type": "Group",
+        "config": {
+          "label": "More things I like",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "more_things_dont_like": {
+        "type": "Group",
+        "config": {
+          "label": "More things I don’t like",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
                 "repeat": false
               }
             }
