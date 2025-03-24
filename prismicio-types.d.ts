@@ -206,6 +206,41 @@ export interface AboutDocumentDataBucketListItem {
   done: prismic.BooleanField;
 }
 
+/**
+ * Item in *About → Favorite Artists*
+ */
+export interface AboutDocumentDataFavoriteArtistsItem {
+  /**
+   * Picture field in *About → Favorite Artists*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.favorite_artists[].picture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  picture: prismic.ImageField<never>;
+
+  /**
+   * Name field in *About → Favorite Artists*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.favorite_artists[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Genre field in *About → Favorite Artists*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.favorite_artists[].genre
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  genre: prismic.KeyTextField;
+}
+
 type AboutDocumentDataSlicesSlice = never;
 
 /**
@@ -329,6 +364,19 @@ interface AboutDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   bucket_list: prismic.GroupField<Simplify<AboutDocumentDataBucketListItem>>;
+
+  /**
+   * Favorite Artists field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.favorite_artists[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  favorite_artists: prismic.GroupField<
+    Simplify<AboutDocumentDataFavoriteArtistsItem>
+  >;
 
   /**
    * Slice Zone field in *About*
@@ -1464,6 +1512,7 @@ declare module "@prismicio/client" {
       AboutDocumentDataMoreThingsLikeItem,
       AboutDocumentDataMoreThingsDontLikeItem,
       AboutDocumentDataBucketListItem,
+      AboutDocumentDataFavoriteArtistsItem,
       AboutDocumentDataSlicesSlice,
       CatalogDocument,
       CatalogDocumentData,

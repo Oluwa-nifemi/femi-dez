@@ -91,6 +91,20 @@ const {data: about} = await useAsyncData("about", () => client.getSingle("about"
         </section>
         <section class="space-y-3">
             <p class="text-gray">
+                Favourite artists
+            </p>
+            <ul class="grid grid-cols-2 gap-x-2.5">
+                <li v-for="artist in about.data.favorite_artists" class="flex items-center gap-x-2">
+                    <prismic-image :field="artist.picture" class="size-12"/>
+                    <div>
+                        <p class="text-primary">{{artist.name}}</p>
+                        <p class="text-gray">{{artist.genre}}</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="space-y-3">
+            <p class="text-gray">
                 More things I like
             </p>
             <slot v-for="thing in about.data.more_things_like">

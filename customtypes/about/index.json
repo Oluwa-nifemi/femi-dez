@@ -229,6 +229,37 @@
           }
         }
       },
+      "favorite_artists": {
+        "type": "Group",
+        "config": {
+          "label": "Favorite Artists",
+          "repeat": true,
+          "fields": {
+            "picture": {
+              "type": "Image",
+              "config": {
+                "label": "Picture",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "Name",
+                "placeholder": ""
+              }
+            },
+            "genre": {
+              "type": "Text",
+              "config": {
+                "label": "Genre",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
