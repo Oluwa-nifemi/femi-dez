@@ -3,6 +3,7 @@ import ModeToggleDark from "assets/icon/mode-toggle-dark.svg";
 import ModeToggleLight from "assets/icon/mode-toggle-light.svg";
 
 const colorMode = useColorMode();
+const route = useRoute();
 
 const toggleColorMode = () => {
     if(colorMode.preference === 'dark'){
@@ -54,7 +55,7 @@ defineProps({
             </div>
             <ul class="mx-auto hidden md:flex gap-x-6">
                 <li v-for="link in links" class="w-[96px]">
-                    <nuxt-link :to="link.link" class="text-gray">
+                    <nuxt-link :to="link.link" :class="{'text-gray': !route.path.startsWith(link.link), 'text-primary': route.path.startsWith(link.link)}">
                         {{link.label}}
                     </nuxt-link>
                 </li>
@@ -83,7 +84,10 @@ defineProps({
             </div>
             <ul class="flex gap-x-6 mt-9">
                 <li v-for="link in links" class="w-[48px]" @click="toggleMobileNav">
-                    <nuxt-link :to="link.link" class="text-gray">
+                    <nuxt-link
+                        :to="link.link"
+                        :class="{'text-gray': !route.path.startsWith(link.link), 'text-primary': route.path.startsWith(link.link)}"
+                    >
                         {{link.label}}
                     </nuxt-link>
                 </li>
