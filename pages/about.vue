@@ -2,6 +2,10 @@
 const {client} = usePrismic();
 
 const {data: about} = await useAsyncData("about", () => client.getSingle("about"));
+const { data: spotify } = useFetch("/api/spotify", {
+    server: true,
+    lazy: true
+});
 </script>
 
 <template>
@@ -93,13 +97,29 @@ const {data: about} = await useAsyncData("about", () => client.getSingle("about"
             <p class="text-gray">
                 Favourite artists
             </p>
-            <ul class="grid grid-cols-2 gap-x-2.5">
+            <ul class="grid grid-cols-2 gap-x-2.5 gap-y-3">
                 <li v-for="artist in about.data.favorite_artists" class="flex items-center gap-x-2">
-                    <prismic-image :field="artist.picture" class="size-12"/>
+                    <prismic-image :field="artist.picture" class="size-12 rounded-full border-[0.5px] border-gray"/>
                     <div>
                         <p class="text-primary">{{artist.name}}</p>
                         <p class="text-gray">{{artist.genre}}</p>
                     </div>
+                </li>
+            </ul>
+        </section>
+        <section class="space-y-3" v-if="spotify && spotify.data.length > 0">
+            <p class="text-gray">
+                Recently played
+            </p>
+            <ul class="grid grid-cols-2 gap-x-2.5 gap-y-3">
+                <li v-for="song in spotify.data">
+                    <a :href="song.href" target="_blank" class="flex items-center gap-x-2">
+                        <img :src="song.image_url" :alt="song.name" class="size-12 rounded-[4px] border-[0.5px] border-gray">
+                        <div>
+                            <p class="text-primary">{{song.name}}</p>
+                            <p class="text-gray">{{song.artist}}</p>
+                        </div>
+                    </a>
                 </li>
             </ul>
         </section>

@@ -11,12 +11,17 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': {prerender: true},
-    '/about': {prerender: true},
+    '/about': { isr: 300 }, // refresh data every 5 minutes
     '/colophon': {prerender: true},
     '/visuals': {prerender: true},
     '/work': {prerender: true},
     '/work/**': {prerender: true},
     '/catalogue': {prerender: true},
     '/catalogue/**': {prerender: true},
+  },
+  runtimeConfig: {
+    spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
+    spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    spotifyRefreshToken: process.env.SPOTIFY_REFRESH_TOKEN
   }
 })
