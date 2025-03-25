@@ -11,14 +11,15 @@ const workItems = work.value?.results || [];
 <template>
     <ul class="grid md:gap-y-[124px] gap-y-6">
         <li v-for="work in workItems">
-            <figure>
-                <prismic-image :field="work.data.main_image" class="w-fit mb-2"/>
-                <figcaption>
-                    <nuxt-link :to="`work/${work.uid}`">
-                        {{ work.data.name }}
-                    </nuxt-link>
-                </figcaption>
-            </figure>
+            <nuxt-link :to="`work/${work.uid}`">
+                <figure>
+                    <prismic-image :field="work.data.main_image" class="w-fit mb-2"/>
+                    <figcaption>
+
+                            {{ work.data.name }}
+                    </figcaption>
+                </figure>
+            </nuxt-link>
         </li>
     </ul>
 </template>

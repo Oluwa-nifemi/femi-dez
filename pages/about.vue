@@ -12,7 +12,7 @@ const { data: spotify } = useFetch("/api/spotify", {
     <section class="flex gap-x-3 md:gap-x-5 w-full mb-6">
         <prismic-image class="flex-grow min-w-0" v-for="image in about.data.intro_images" :field="image.image"/>
     </section>
-    <section class="space-y-3 mb-8 md:mb-[57px]">
+    <section class="flex flex-col gap-y-3 mb-8 md:mb-[57px]">
         <prismic-rich-text :field="about.data.description"/>
     </section>
     <div class="flex flex-col gap-y-8 md:gap-y-[72px]">
@@ -76,24 +76,34 @@ const { data: spotify } = useFetch("/api/spotify", {
             </div>
         </section>
         <section class="grid md:grid-cols-2 gap-y-5 gap-x-8">
-            <div class="space-y-3">
+            <div class="flex flex-col gap-y-3">
                 <p class="text-gray">
                     Things i like
                 </p>
-                <p v-for="thing in about.data.things_like">
-                    {{ thing.label }}
-                </p>
+                <slot v-for="thing in about.data.things_like">
+                    <a v-if="thing.link.url" :href="thing.link.url" target="_blank" class="underline">
+                        {{ thing.link.text }}
+                    </a>
+                    <p v-else>
+                        {{ thing.link.text }}
+                    </p>
+                </slot>
             </div>
-            <div class="space-y-3">
+            <div class="flex flex-col gap-y-3">
                 <p class="text-gray">
                     Things i don’t like
                 </p>
-                <p v-for="thing in about.data.things_not_like">
-                    {{ thing.label }}
-                </p>
+                <slot v-for="thing in about.data.things_not_like">
+                    <a v-if="thing.link.url" :href="thing.link.url" target="_blank" class="underline">
+                        {{ thing.link.text }}
+                    </a>
+                    <p v-else>
+                        {{ thing.link.text }}
+                    </p>
+                </slot>
             </div>
         </section>
-        <section class="space-y-3">
+        <section class="flex flex-col gap-y-3">
             <p class="text-gray">
                 Favourite artists
             </p>
@@ -116,7 +126,7 @@ const { data: spotify } = useFetch("/api/spotify", {
                 </slot>
             </ul>
         </section>
-        <section class="space-y-3" v-if="spotify && spotify.data.length > 0">
+        <section class="flex flex-col gap-y-3" v-if="spotify && spotify.data.length > 0">
             <p class="text-gray">
                 Recently played
             </p>
@@ -132,12 +142,12 @@ const { data: spotify } = useFetch("/api/spotify", {
                 </li>
             </ul>
         </section>
-        <section class="space-y-3">
+        <section class="flex flex-col gap-y-3">
             <p class="text-gray">
                 More things I like
             </p>
             <slot v-for="thing in about.data.more_things_like">
-                <a v-if="thing.link.url" :href="thing.link.url" target="_blank">
+                <a v-if="thing.link.url" :href="thing.link.url" target="_blank" class="underline">
                     {{thing.link.text}}
                 </a>
                 <p v-else>
@@ -145,12 +155,12 @@ const { data: spotify } = useFetch("/api/spotify", {
                 </p>
             </slot>
         </section>
-        <section class="space-y-3">
+        <section class="flex flex-col gap-y-3">
             <p class="text-gray">
                 More things I don’t like
             </p>
             <slot v-for="thing in about.data.more_things_dont_like">
-                <a v-if="thing.link.url" :href="thing.link.url" target="_blank">
+                <a v-if="thing.link.url" :href="thing.link.url" target="_blank" class="underline">
                     {{thing.link.text}}
                 </a>
                 <p v-else>
@@ -158,7 +168,7 @@ const { data: spotify } = useFetch("/api/spotify", {
                 </p>
             </slot>
         </section>
-        <section class="space-y-3">
+        <section class="flex flex-col gap-y-3">
             <p class="text-gray">
                 Bucket list
             </p>
