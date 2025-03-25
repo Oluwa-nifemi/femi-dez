@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': {prerender: true},
-    '/about': { isr: 300 }, // refresh data every 5 minutes
+    '/about': { isr: 180 }, // refresh data every 3 minutes
     '/colophon': {prerender: true},
     '/visuals': {prerender: true},
     '/work': {prerender: true},

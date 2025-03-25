@@ -170,5 +170,5 @@ export default defineCachedEventHandler(async () => {
   }
 },
 {
-  maxAge: 300 // cache for 5 minutes (in seconds)
+  maxAge: 180 // cache for 3 minutes (in seconds)
 })
