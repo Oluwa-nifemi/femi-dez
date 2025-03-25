@@ -97,21 +97,30 @@ const { data: spotify } = useFetch("/api/spotify", {
             <p class="text-gray">
                 Favourite artists
             </p>
-            <ul class="grid grid-cols-2 gap-x-2.5 gap-y-3">
-                <li v-for="artist in about.data.favorite_artists" class="flex items-center gap-x-2">
-                    <prismic-image :field="artist.picture" class="size-12 rounded-full border-[0.5px] border-gray"/>
-                    <div>
-                        <p class="text-primary">{{artist.name}}</p>
-                        <p class="text-gray">{{artist.genre}}</p>
+            <ul class="grid md:grid-cols-2 gap-x-2.5 gap-y-3">
+                <slot v-for="artist in about.data.favorite_artists">
+                    <a v-if="artist.spotify_link.text" :href="artist.spotify_link.text" target="_blank" class="flex items-center gap-x-2">
+                        <prismic-image :field="artist.picture" class="size-12 rounded-full border-[0.5px] border-gray"/>
+                        <div>
+                            <p class="text-primary">{{artist.name}}</p>
+                            <p class="text-gray">{{artist.genre}}</p>
+                        </div>
+                    </a>
+                    <div v-else class="flex items-center gap-x-2">
+                        <prismic-image :field="artist.picture" class="size-12 rounded-full border-[0.5px] border-gray"/>
+                        <div>
+                            <p class="text-primary">{{artist.name}}</p>
+                            <p class="text-gray">{{artist.genre}}</p>
+                        </div>
                     </div>
-                </li>
+                </slot>
             </ul>
         </section>
         <section class="space-y-3" v-if="spotify && spotify.data.length > 0">
             <p class="text-gray">
                 Recently played
             </p>
-            <ul class="grid grid-cols-2 gap-x-2.5 gap-y-3">
+            <ul class="grid md:grid-cols-2 gap-x-2.5 gap-y-3">
                 <li v-for="song in spotify.data">
                     <a :href="song.href" target="_blank" class="flex items-center gap-x-2">
                         <img :src="song.image_url" :alt="song.name" class="size-12 rounded-[4px] border-[0.5px] border-gray">

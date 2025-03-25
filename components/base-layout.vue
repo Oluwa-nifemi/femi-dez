@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen w-screen pb-32">
+    <div class="min-h-dvh w-screen pb-32">
         <Navbar :weather-info="weatherInfo"/>
         <div class="mx-auto pt-[42px] md:pt-7 px-6 md:px-0" :class="{'md:w-[452px]': !wide, 'md:w-[820px]': wide}">
             <slot/>

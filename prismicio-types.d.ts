@@ -239,6 +239,22 @@ export interface AboutDocumentDataFavoriteArtistsItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   genre: prismic.KeyTextField;
+
+  /**
+   * Spotify Link field in *About → Favorite Artists*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.favorite_artists[].spotify_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  spotify_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 type AboutDocumentDataSlicesSlice = never;

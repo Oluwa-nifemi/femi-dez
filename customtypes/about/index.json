@@ -256,6 +256,17 @@
                 "label": "Genre",
                 "placeholder": ""
               }
+            },
+            "spotify_link": {
+              "type": "Link",
+              "config": {
+                "label": "Spotify Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
             }
           }
         }
