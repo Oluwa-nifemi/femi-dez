@@ -12,26 +12,38 @@ const props = defineProps(
   ]),
 );
 
-const activePreview = ref<string | null>(null);
+const activePreview = ref<string | undefined | null>();
+
+const availableImages = props.slice.primary.items.filter(item => item.image?.url).map(item => item.image.url!);
 </script>
 
 <template>
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="grid gap-y-3"
+    class="grid gap-y-2"
   >
       <p class="text-gray">
           {{slice.primary.title}}
       </p>
-      <slot v-for="{link, image} in slice.primary.items">
-          <a v-if="link.url" :href="link.url" target="_blank" class="underline w-fit" @mouseenter="activePreview = image.url" @mouseleave="activePreview = null">
-              {{link.text}}
-          </a>
-          <p v-else class="w-fit" @mouseenter="activePreview = image.url" @mouseleave="activePreview = null">
-              {{link.text}}
-          </p>
-      </slot>
-      <img v-if="activePreview" class="max-md:hidden fixed bottom-[72px] right-[36px] w-[134px] h-auto" :src="activePreview" alt="Preview image for hovered item">
+      <component
+          v-for="{ link, image } in slice.primary.items"
+          :is="link.url ? 'a' : 'p'"
+          :href="link.url || undefined"
+          target="_blank"
+          class="w-fit py-0.5"
+          :class="{'underline': !!link.url}"
+          @mouseenter="() => activePreview = image.url"
+          @mouseleave="() => activePreview = null"
+      >
+          {{ link.text }}
+      </component>
+      <img
+          v-for="image in availableImages"
+          class="max-md:hidden fixed bottom-[72px] right-[36px] w-[134px] h-auto transition-opacity duration-200"
+          :class="{'opacity-0': image !== activePreview, 'opacity-100': image === activePreview}"
+          :src="image"
+          alt="Preview image for hovered item"
+      >
   </section>
 </template>
