@@ -15,9 +15,25 @@ export default defineNuxtConfig({
     '/colophon': {prerender: true},
     '/visuals': {prerender: true},
     '/work': {prerender: true},
-    '/work/**': {prerender: true},
     '/catalogue': {prerender: true},
-    '/catalogue/**': {prerender: true},
+  },
+  hooks: {
+    async "prerender:routes"(ctx) {
+      const { createClient } = await import('@prismicio/client')
+      const sm = await import('./slicemachine.config.json')
+      const client = createClient(sm.apiEndpoint || sm.repositoryName)
+
+      const workDocs = await client.getAllByType('work')
+      const catalogueDocs = await client.getAllByType('catalog')
+
+      for (const doc of workDocs) {
+        ctx.routes.add(`/work/${doc.uid}`)
+      }
+
+      for (const doc of catalogueDocs) {
+        ctx.routes.add(`/catalogue/${doc.uid}`)
+      }
+    }
   },
   runtimeConfig: {
     spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
