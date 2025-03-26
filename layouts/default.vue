@@ -4,4 +4,5 @@
     </base-layout>
 </template>
 <script setup>
+import "./global.css"
 </script>

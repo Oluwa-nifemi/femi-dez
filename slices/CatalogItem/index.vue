@@ -31,8 +31,8 @@ const availableImages = props.slice.primary.items.filter(item => item.image?.url
           :is="link.url ? 'a' : 'p'"
           :href="link.url || undefined"
           target="_blank"
-          class="w-fit py-0.5"
-          :class="{'underline': !!link.url}"
+          class="w-fit py-0.5 after:!bottom-[3px]"
+          :class="{'link-animate': !!link.url}"
           @mouseenter="() => activePreview = image.url"
           @mouseleave="() => activePreview = null"
       >

@@ -27,7 +27,7 @@ const { data: spotify } = useFetch("/api/spotify", {
                     </p>
                     <div>
                         <a v-if="!!experience.company.url" :href="experience.company.url" target="_blank"
-                           class="underline">
+                           class="link-animate">
                             {{ experience.company.text }}
                         </a>
                         <p v-else>
@@ -50,7 +50,7 @@ const { data: spotify } = useFetch("/api/spotify", {
                         {{ award.time }}
                     </p>
                     <div>
-                        <a :href="award.link.url" target="_blank" class="underline">
+                        <a :href="award.link.url" target="_blank" class="link-animate">
                             {{ award.link.text }}
                         </a>
                     </div>
@@ -80,7 +80,7 @@ const { data: spotify } = useFetch("/api/spotify", {
                 <p class="text-gray">
                     Things I like
                 </p>
-                <component v-for="thing in about.data.things_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'underline': thing.link.url}">
+                <component v-for="thing in about.data.things_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" class="w-fit" target="_blank" :class="{'link-animate': thing.link.url}">
                     {{ thing.link.text }}
                 </component>
             </div>
@@ -88,7 +88,7 @@ const { data: spotify } = useFetch("/api/spotify", {
                 <p class="text-gray">
                     Things I don’t like
                 </p>
-                <component v-for="thing in about.data.things_not_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'underline': thing.link.url}">
+                <component v-for="thing in about.data.things_not_like" class="w-fit" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'link-animate': thing.link.url}">
                     {{ thing.link.text }}
                 </component>
             </div>
@@ -127,7 +127,7 @@ const { data: spotify } = useFetch("/api/spotify", {
             <p class="text-gray">
                 More things I like
             </p>
-            <component v-for="thing in about.data.more_things_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'underline': thing.link.url}">
+            <component v-for="thing in about.data.more_things_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" class="w-fit" :class="{'link-animate': thing.link.url}">
                 {{thing.link.text}}
             </component>
         </section>
@@ -135,7 +135,7 @@ const { data: spotify } = useFetch("/api/spotify", {
             <p class="text-gray">
                 More things I don’t like
             </p>
-            <component v-for="thing in about.data.more_things_dont_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'underline': thing.link.url}">
+            <component class="w-fit" v-for="thing in about.data.more_things_dont_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'link-animate': thing.link.url}">
                 {{thing.link.text}}
             </component>
         </section>

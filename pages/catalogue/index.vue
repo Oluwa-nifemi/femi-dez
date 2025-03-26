@@ -30,7 +30,7 @@ const description = cataloguePage.value?.data.description;
                 <p class="text-gray absolute left-[-236px]">
                     {{ format(new Date(catalog.last_publication_date), 'MMM dd, yyyy') }}
                 </p>
-                <p class="underline">
+                <p class="link-animate">
                     {{ catalog.data.name }}
                 </p>
                 <prismic-image :field="catalog.data.cover_image" class="mb-3 max-w-full min-w-0"/>

@@ -1,0 +1,48 @@
+.link-animate {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.link-animate::after {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: currentColor;
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1); /* your $ease-out-expo */
+}
+
+.link-animate:hover::after {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+.link-animate-children a {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.link-animate-children a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: currentColor;
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1); /* your $ease-out-expo */
+}
+
+.link-animate-children:hover::after {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
