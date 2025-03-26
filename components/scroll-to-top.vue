@@ -23,7 +23,7 @@ const handleScroll = throttle(() => {
 
   if (documentHeight > windowHeight * PAGE_THRESHOLD) {
     const scrollPercent = (scrollY + windowHeight) / documentHeight
-    showButton.value = scrollPercent > 0.3
+    showButton.value = scrollPercent > 0.7
   } else {
     showButton.value = false
   }
@@ -44,7 +44,7 @@ onUnmounted(() => {
 
 <template>
   <button
-    class="fixed bottom-16 right-6 bg-black text-white rounded-full px-4 py-2 shadow-lg duration-200"
+    class="fixed bottom-16 right-6 bg-primary text-white dark:text-black rounded-full px-4 py-2 shadow-lg duration-200"
     :class="{'pointer-events-none opacity-0': !showButton, 'opacity-100': showButton}"
     @click="scrollToTop"
   >
