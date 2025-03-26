@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-dvh w-screen pb-32">
+    <div class="min-h-dvh w-screen pb-32 page-content">
         <Navbar :weather-info="weatherInfo"/>
         <div class="mx-auto pt-[42px] md:pt-7 px-6 md:px-0" :class="{'md:w-[452px]': !wide, 'md:w-[820px]': wide}">
             <slot/>
@@ -16,6 +16,7 @@
     <scroll-to-top/>
 </template>
 <script setup>
+import "./global.css"
 defineProps({
     wide: Boolean
 })
@@ -71,3 +72,8 @@ const { data: weatherInfo } = useAsyncData(async () => {
     return `${formattedTime}, ${weatherCondition} at ${temperature} °C`
 })
 </script>
+<style>
+.page-content{
+    view-transition-name: crossfade;
+}
+</style>
