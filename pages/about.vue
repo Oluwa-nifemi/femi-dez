@@ -78,29 +78,19 @@ const { data: spotify } = useFetch("/api/spotify", {
         <section class="grid md:grid-cols-2 gap-y-5 gap-x-8">
             <div class="flex flex-col gap-y-3">
                 <p class="text-gray">
-                    Things i like
+                    Things I like
                 </p>
-                <slot v-for="thing in about.data.things_like">
-                    <a v-if="thing.link.url" :href="thing.link.url" target="_blank" class="underline">
-                        {{ thing.link.text }}
-                    </a>
-                    <p v-else>
-                        {{ thing.link.text }}
-                    </p>
-                </slot>
+                <component v-for="thing in about.data.things_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'underline': thing.link.url}">
+                    {{ thing.link.text }}
+                </component>
             </div>
             <div class="flex flex-col gap-y-3">
                 <p class="text-gray">
-                    Things i don’t like
+                    Things I don’t like
                 </p>
-                <slot v-for="thing in about.data.things_not_like">
-                    <a v-if="thing.link.url" :href="thing.link.url" target="_blank" class="underline">
-                        {{ thing.link.text }}
-                    </a>
-                    <p v-else>
-                        {{ thing.link.text }}
-                    </p>
-                </slot>
+                <component v-for="thing in about.data.things_not_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'underline': thing.link.url}">
+                    {{ thing.link.text }}
+                </component>
             </div>
         </section>
         <section class="flex flex-col gap-y-3">
@@ -108,22 +98,13 @@ const { data: spotify } = useFetch("/api/spotify", {
                 Favourite artists
             </p>
             <ul class="grid md:grid-cols-2 gap-x-2.5 gap-y-3">
-                <slot v-for="artist in about.data.favorite_artists">
-                    <a v-if="artist.spotify_link.text" :href="artist.spotify_link.text" target="_blank" class="flex items-center gap-x-2">
-                        <prismic-image :field="artist.picture" class="size-12 rounded-full border-[0.5px] border-gray"/>
-                        <div>
-                            <p class="text-primary">{{artist.name}}</p>
-                            <p class="text-gray">{{artist.genre}}</p>
-                        </div>
-                    </a>
-                    <div v-else class="flex items-center gap-x-2">
-                        <prismic-image :field="artist.picture" class="size-12 rounded-full border-[0.5px] border-gray"/>
-                        <div>
-                            <p class="text-primary">{{artist.name}}</p>
-                            <p class="text-gray">{{artist.genre}}</p>
-                        </div>
+                <component v-for="artist in about.data.favorite_artists" :is="artist.spotify_link.text ? 'a' : 'div'" :href="artist.spotify_link.text" target="_blank" class="flex items-center gap-x-2" :class="{'underline': artist.spotify_link.text}">
+                    <prismic-image :field="artist.picture" class="size-12 rounded-full border-[0.5px] border-gray"/>
+                    <div>
+                        <p class="text-primary">{{artist.name}}</p>
+                        <p class="text-gray">{{artist.genre}}</p>
                     </div>
-                </slot>
+                </component>
             </ul>
         </section>
         <section class="flex flex-col gap-y-3" v-if="spotify && spotify.data.length > 0">
@@ -146,27 +127,17 @@ const { data: spotify } = useFetch("/api/spotify", {
             <p class="text-gray">
                 More things I like
             </p>
-            <slot v-for="thing in about.data.more_things_like">
-                <a v-if="thing.link.url" :href="thing.link.url" target="_blank" class="underline">
-                    {{thing.link.text}}
-                </a>
-                <p v-else>
-                    {{thing.link.text}}
-                </p>
-            </slot>
+            <component v-for="thing in about.data.more_things_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'underline': thing.link.url}">
+                {{thing.link.text}}
+            </component>
         </section>
         <section class="flex flex-col gap-y-3">
             <p class="text-gray">
                 More things I don’t like
             </p>
-            <slot v-for="thing in about.data.more_things_dont_like">
-                <a v-if="thing.link.url" :href="thing.link.url" target="_blank" class="underline">
-                    {{thing.link.text}}
-                </a>
-                <p v-else>
-                    {{thing.link.text}}
-                </p>
-            </slot>
+            <component v-for="thing in about.data.more_things_dont_like" :is="thing.link.url ? 'a' : 'p'" :href="thing.link.url" target="_blank" :class="{'underline': thing.link.url}">
+                {{thing.link.text}}
+            </component>
         </section>
         <section class="flex flex-col gap-y-3">
             <p class="text-gray">
