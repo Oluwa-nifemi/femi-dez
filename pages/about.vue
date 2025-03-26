@@ -98,7 +98,7 @@ const { data: spotify } = useFetch("/api/spotify", {
                 Favourite artists
             </p>
             <ul class="grid md:grid-cols-2 gap-x-2.5 gap-y-3">
-                <component v-for="artist in about.data.favorite_artists" :is="artist.spotify_link.text ? 'a' : 'div'" :href="artist.spotify_link.text" target="_blank" class="flex items-center gap-x-2" :class="{'underline': artist.spotify_link.text}">
+                <component v-for="artist in about.data.favorite_artists" :is="artist.spotify_link.text ? 'a' : 'div'" :href="artist.spotify_link.text" target="_blank" class="flex items-center gap-x-2">
                     <prismic-image :field="artist.picture" class="size-12 rounded-full border-[0.5px] border-gray"/>
                     <div>
                         <p class="text-primary">{{artist.name}}</p>
@@ -116,7 +116,7 @@ const { data: spotify } = useFetch("/api/spotify", {
                     <a :href="song.href" target="_blank" class="flex items-center gap-x-2">
                         <img :src="song.image_url" :alt="song.name" class="size-12 rounded-[4px] border-[0.5px] border-gray">
                         <div>
-                            <p class="text-primary">{{song.name}}</p>
+                            <p class="text-primary w-[170px] md:w-[120px] truncate" :title="song.name">{{song.name}}</p>
                             <p class="text-gray">{{song.artist}}</p>
                         </div>
                     </a>
