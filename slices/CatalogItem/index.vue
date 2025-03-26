@@ -3,7 +3,7 @@ import type { Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.CatalogItemSlice>([
     "slice",
     "index",
@@ -11,6 +11,8 @@ defineProps(
     "context",
   ]),
 );
+
+const activePreview = ref<string | null>(null);
 </script>
 
 <template>
@@ -22,8 +24,14 @@ defineProps(
       <p class="text-gray">
           {{slice.primary.title}}
       </p>
-      <a v-for="{link} in slice.primary.items" :href="link.url" target="_blank" class="underline">
-          {{link.text}}
-      </a>
+      <slot v-for="{link, image} in slice.primary.items">
+          <a v-if="link.url" :href="link.url" target="_blank" class="underline w-fit" @mouseenter="activePreview = image.url" @mouseleave="activePreview = null">
+              {{link.text}}
+          </a>
+          <p v-else class="w-fit" @mouseenter="activePreview = image.url" @mouseleave="activePreview = null">
+              {{link.text}}
+          </p>
+      </slot>
+      <img v-if="activePreview" class="max-md:hidden fixed bottom-[72px] right-[36px] w-[134px] h-auto" :src="activePreview" alt="Preview image for hovered item">
   </section>
 </template>
