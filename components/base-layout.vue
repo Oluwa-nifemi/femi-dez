@@ -13,6 +13,7 @@
             </p>
         </div>
     </div>
+    <scroll-to-top/>
 </template>
 <script setup>
 defineProps({
