@@ -28,6 +28,14 @@
           "placeholder": ""
         }
       },
+      "thumbnail": {
+        "type": "Image",
+        "config": {
+          "label": "Thumbnail (If video)",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

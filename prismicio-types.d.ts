@@ -804,6 +804,17 @@ interface ExplorationDocumentData {
   caption: prismic.KeyTextField;
 
   /**
+   * Thumbnail (If video) field in *Exploration*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exploration.thumbnail
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  thumbnail: prismic.ImageField<never>;
+
+  /**
    * Slice Zone field in *Exploration*
    *
    * - **Field Type**: Slice Zone
@@ -1298,16 +1309,6 @@ export type CatalogItemSlice = prismic.SharedSlice<
  */
 export interface VisualImageRowSliceDefaultPrimaryMediaItem {
   /**
-   * Media field in *VisualMediaRow → Default → Primary → Media*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: visual_image_row.default.primary.media[].media
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  media: prismic.ImageField<never>;
-
-  /**
    * Variant field in *VisualMediaRow → Default → Primary → Media*
    *
    * - **Field Type**: Select
@@ -1316,6 +1317,26 @@ export interface VisualImageRowSliceDefaultPrimaryMediaItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   variant: prismic.SelectField<"Portrait" | "Landscape">;
+
+  /**
+   * Thumbnail (If video) field in *VisualMediaRow → Default → Primary → Media*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: visual_image_row.default.primary.media[].thumbnail
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  thumbnail: prismic.ImageField<never>;
+
+  /**
+   * Media field in *VisualMediaRow → Default → Primary → Media*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: visual_image_row.default.primary.media[].media
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  media: prismic.LinkToMediaField<prismic.FieldState, never>;
 }
 
 /**
