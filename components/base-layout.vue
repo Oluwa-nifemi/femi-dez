@@ -5,7 +5,7 @@
             <slot/>
         </div>
         <div class="hidden md:flex fixed bottom-6 px-6 md:items-center justify-between w-screen z-30 flex-col md:flex-row gap-y-1">
-            <nuxt-link to="/colophon" class="text-gray">
+            <nuxt-link to="/colophon" class="text-gray link-animate">
                 Colophon
             </nuxt-link>
             <p v-if="weatherInfo" class="text-gray">
