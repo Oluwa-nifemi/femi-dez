@@ -41,11 +41,20 @@ defineProps({
 </script>
 
 <template>
-    <div class="pt-[60px] md:pt-10 px-6">
-        <nav class="flex h-10 relative">
+    <nav>
+        <ul class="mx-auto hidden md:flex gap-x-6 absolute top-[60px] md:top-10 left-1/2 -translate-x-1/2">
+            <li v-for="link in links" class="w-[96px]">
+                <nuxt-link :to="link.link" :class="{'text-gray': !route.path.startsWith(link.link), 'text-primary': route.path.startsWith(link.link)}">
+                    {{link.label}}
+                </nuxt-link>
+            </li>
+        </ul>
+    </nav>
+    <div class="pt-[60px] md:pt-10 px-6  sticky top-0">
+        <div class="flex h-10 items-start justify-between">
             <!-- I used absolute positioning for this and the dark mode toggle because trying to centralize the nav links relative
             to other content within the div is rather tricky it always veers off in a direction instead of having even margin when using mx-auto -->
-            <div class="absolute left-0">
+            <div class="left-0">
                 <nuxt-link to="/" class="mb-2 text-primary">
                     Oluwafemi Soetan
                 </nuxt-link>
@@ -53,61 +62,54 @@ defineProps({
                     Digital Designer
                 </p>
             </div>
-            <ul class="mx-auto hidden md:flex gap-x-6">
-                <li v-for="link in links" class="w-[96px]">
-                    <nuxt-link :to="link.link" :class="{'text-gray': !route.path.startsWith(link.link), 'text-primary': route.path.startsWith(link.link)}">
-                        {{link.label}}
-                    </nuxt-link>
-                </li>
-            </ul>
-            <button @click="toggleColorMode" class="hidden md:block absolute top-0 right-0">
+            <button @click="toggleColorMode" class="hidden md:block">
                 <ModeToggleDark class="dark-toggle"  width="25" height="25" filled/>
                 <ModeToggleLight class="light-toggle" width="25" height="25"  filled/>
             </button>
-            <button class="absolute right-0 md:hidden" @click="toggleMobileNav">
+            <button class="md:hidden" @click="toggleMobileNav">
                 Menu
             </button>
-        </nav>
-        <aside class="fixed top-0 left-0 h-dvh w-full z-20 bg-background pt-[60px] px-6 flex flex-col pb-10" :class="{'pointer-events-none opacity-0': !showMobileNav}">
-            <div class="flex justify-between items-start">
-                <div>
-                    <nuxt-link to="/" class="mb-2 text-primary" @click="toggleMobileNav">
-                        Oluwafemi Soetan
-                    </nuxt-link>
-                    <p class="text-gray">
-                        Digital Designer
-                    </p>
-                </div>
-                <button @click="toggleMobileNav">
-                    Close
-                </button>
-            </div>
-            <ul class="flex gap-x-6 mt-9">
-                <li v-for="link in links" class="w-[48px]" @click="toggleMobileNav">
-                    <nuxt-link
-                        :to="link.link"
-                        :class="{'text-gray': !route.path.startsWith(link.link), 'text-primary': route.path.startsWith(link.link)}"
-                    >
-                        {{link.label}}
-                    </nuxt-link>
-                </li>
-            </ul>
-            <div class="mt-auto flex items-center justify-between">
-                <div class="grid gap-y-1">
-                    <nuxt-link to="/colophon" class="text-gray underline">
-                        Colophon
-                    </nuxt-link>
-                    <p v-if="weatherInfo" class="text-gray">
-                        {{weatherInfo}}
-                    </p>
-                </div>
-                <button @click="toggleColorMode">
-                    <ModeToggleDark class="dark-toggle"  width="25" height="25" filled/>
-                    <ModeToggleLight class="light-toggle" width="25" height="25"  filled/>
-                </button>
-            </div>
-        </aside>
+        </div>
     </div>
+    <aside class="fixed top-0 left-0 h-dvh w-full z-20 bg-background pt-[60px] px-6 flex flex-col pb-10" :class="{'pointer-events-none opacity-0': !showMobileNav}">
+        <div class="flex justify-between items-start">
+            <div>
+                <nuxt-link to="/" class="mb-2 text-primary" @click="toggleMobileNav">
+                    Oluwafemi Soetan
+                </nuxt-link>
+                <p class="text-gray">
+                    Digital Designer
+                </p>
+            </div>
+            <button @click="toggleMobileNav">
+                Close
+            </button>
+        </div>
+        <ul class="flex gap-x-6 mt-9">
+            <li v-for="link in links" class="w-[48px]" @click="toggleMobileNav">
+                <nuxt-link
+                    :to="link.link"
+                    :class="{'text-gray': !route.path.startsWith(link.link), 'text-primary': route.path.startsWith(link.link)}"
+                >
+                    {{link.label}}
+                </nuxt-link>
+            </li>
+        </ul>
+        <div class="mt-auto flex items-center justify-between">
+            <div class="grid gap-y-1">
+                <nuxt-link to="/colophon" class="text-gray underline">
+                    Colophon
+                </nuxt-link>
+                <p v-if="weatherInfo" class="text-gray">
+                    {{weatherInfo}}
+                </p>
+            </div>
+            <button @click="toggleColorMode">
+                <ModeToggleDark class="dark-toggle"  width="25" height="25" filled/>
+                <ModeToggleLight class="light-toggle" width="25" height="25"  filled/>
+            </button>
+        </div>
+    </aside>
 </template>
 
 <style scoped>
