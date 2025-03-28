@@ -4,8 +4,10 @@ import {onMounted, ref} from 'vue';
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 let ctx: CanvasRenderingContext2D | null = null;
 let drawing = false;
+let idleTimer: number | null = null;
 
 const canvasHasContent = ref(false);
+const showControls = ref(false);
 
 const colorMode = useColorMode();
 
@@ -47,6 +49,10 @@ onMounted(() => {
 
 function startDrawing(e: TouchEvent) {
     drawing = true;
+    if (idleTimer) {
+        clearTimeout(idleTimer);
+        idleTimer = null;
+    }
     const { x, y } = getCoordinates(e);
     const ctx = canvasRef.value?.getContext('2d');
     ctx.strokeStyle = getStrokeStyle(colorMode.preference);
@@ -65,6 +71,11 @@ function draw(e: TouchEvent) {
 function endDrawing() {
     drawing = false;
     if (ctx) ctx.beginPath(); // reset after drawing is done
+
+    // start idle timer
+    idleTimer = setTimeout(() => {
+        showControls.value = true;
+    }, 500);
 }
 
 function getCoordinates(e: TouchEvent) {
@@ -119,6 +130,7 @@ function onRenderInstructions(){
         showEasterEgg.value = true
     }
 }
+
 </script>
 
 <template>
@@ -138,7 +150,7 @@ function onRenderInstructions(){
                 <typewriter :interval-between-letters="25" v-if="showEasterEgg" text="I solemnly swear I am up to no good..." class="text-gray" />
             </div>
         </div>
-        <div class="flex justify-between px-6 gap-x-2">
+        <div class="flex justify-between px-6 gap-x-2 opacity-0 pointer-events-none transition duration-300" :class="{'opacity-100 pointer-events-auto': showControls}">
             <button class="underline" @click="share">Share Image</button>
             <button class="underline" @click="exportImage">Download Image</button>
             <button class="underline" @click="resetCanvas">Reset canvas</button>
