@@ -40,6 +40,7 @@ onMounted(() => {
           v-if="isVisible"
           autoplay
           muted
+          loop
           playsinline
           :poster="props.thumbnailSrc"
           :class="innerClass"
