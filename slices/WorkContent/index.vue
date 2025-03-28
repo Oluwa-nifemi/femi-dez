@@ -20,7 +20,13 @@ defineProps(
     v-if="slice.variation === 'imageRow'"
     class="flex gap-x-4 md:gap-x-5 w-full"
   >
-      <prismic-image class="flex-grow min-w-0" v-for="image in slice.primary.image_row" :field="image.image" />
+      <media
+          v-for="media in slice.primary.media_row"
+          :type="media.media?.kind === 'image' ? 'image' : 'video'"
+          :src="media.media.url || ''"
+          :thumbnail-src="media.main_media_thumbnail?.url || ''"
+          class="w-fit mb-6"
+      />
   </div>
     <p v-else>
         {{slice.primary.description}}

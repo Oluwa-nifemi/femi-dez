@@ -9,7 +9,12 @@ const { data: work } = useAsyncData(`work-${route.params.uid}`, () => client.get
 
 <template>
     <section v-if="work">
-        <prismic-image :field="work.data.main_image" class="w-fit mb-6 link-animate-children" />
+        <media
+            :type="work.data.main_media?.kind === 'image' ? 'image' : 'video'"
+            :src="work.data.main_media.url || ''"
+            :thumbnail-src="work.data.main_media_thumbnail?.url || ''"
+            class="w-fit mb-6"
+        />
         <p class="mb-6">
             {{work.data.description}}
         </p>

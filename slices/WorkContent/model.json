@@ -30,16 +30,25 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "image_row": {
+        "media_row": {
           "type": "Group",
           "config": {
-            "label": "Image Row (Max 2 Images)",
+            "label": "Media Row (Max 2 Images)",
             "repeat": true,
             "fields": {
-              "image": {
+              "media": {
+                "type": "Link",
+                "config": {
+                  "label": "Media Item",
+                  "placeholder": "",
+                  "select": "media",
+                  "allowText": true
+                }
+              },
+              "media_thumbnail": {
                 "type": "Image",
                 "config": {
-                  "label": "Image",
+                  "label": "Media Thumbnail (Optional)",
                   "constraint": {},
                   "thumbnails": []
                 }

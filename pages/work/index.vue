@@ -18,7 +18,12 @@ const explorationItems = explorations.value?.results || [];
         <li v-for="work in workItems">
             <nuxt-link :to="`work/${work.uid}`">
                 <figure>
-                    <prismic-image :field="work.data.main_image" class="w-fit mb-2"/>
+                    <media
+                        :type="work.data.main_media?.kind === 'image' ? 'image' : 'video'"
+                        :src="work.data.main_media.url || ''"
+                        :thumbnail-src="work.data.main_media_thumbnail?.url || ''"
+                        class="w-fit mb-2"
+                    />
                     <figcaption>
 
                             {{ work.data.name }}

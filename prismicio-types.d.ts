@@ -1099,15 +1099,26 @@ type WorkDocumentDataSlices1Slice = WorkContentSlice;
  */
 interface WorkDocumentData {
   /**
-   * Main Image field in *Work*
+   * Main Media field in *Work*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.main_media
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  main_media: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Main Media Thumbnail (Optional) field in *Work*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: work.main_image
+   * - **API ID Path**: work.main_media_thumbnail
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  main_image: prismic.ImageField<never>;
+  main_media_thumbnail: prismic.ImageField<never>;
 
   /**
    * Name field in *Work*
@@ -1387,18 +1398,28 @@ export type VisualImageRowSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *WorkContent → Image Row → Primary → Image Row (Max 2 Images)*
+ * Item in *WorkContent → Image Row → Primary → Media Row (Max 2 Images)*
  */
-export interface WorkContentSliceImageRowPrimaryImageRowItem {
+export interface WorkContentSliceImageRowPrimaryMediaRowItem {
   /**
-   * Image field in *WorkContent → Image Row → Primary → Image Row (Max 2 Images)*
+   * Media Item field in *WorkContent → Image Row → Primary → Media Row (Max 2 Images)*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_content.imageRow.primary.media_row[].media
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  media: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Media Thumbnail (Optional) field in *WorkContent → Image Row → Primary → Media Row (Max 2 Images)*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: work_content.imageRow.primary.image_row[].image
+   * - **API ID Path**: work_content.imageRow.primary.media_row[].media_thumbnail
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  media_thumbnail: prismic.ImageField<never>;
 }
 
 /**
@@ -1434,15 +1455,15 @@ export type WorkContentSliceDefault = prismic.SharedSliceVariation<
  */
 export interface WorkContentSliceImageRowPrimary {
   /**
-   * Image Row (Max 2 Images) field in *WorkContent → Image Row → Primary*
+   * Media Row (Max 2 Images) field in *WorkContent → Image Row → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: work_content.imageRow.primary.image_row[]
+   * - **API ID Path**: work_content.imageRow.primary.media_row[]
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  image_row: prismic.GroupField<
-    Simplify<WorkContentSliceImageRowPrimaryImageRowItem>
+  media_row: prismic.GroupField<
+    Simplify<WorkContentSliceImageRowPrimaryMediaRowItem>
   >;
 }
 
@@ -1593,7 +1614,7 @@ declare module "@prismicio/client" {
       VisualImageRowSliceDefault,
       WorkContentSlice,
       WorkContentSliceDefaultPrimary,
-      WorkContentSliceImageRowPrimaryImageRowItem,
+      WorkContentSliceImageRowPrimaryMediaRowItem,
       WorkContentSliceImageRowPrimary,
       WorkContentSliceTextWithHeaderPrimary,
       WorkContentSliceVariation,

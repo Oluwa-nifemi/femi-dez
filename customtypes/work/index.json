@@ -12,10 +12,19 @@
           "label": "UID"
         }
       },
-      "main_image": {
+      "main_media": {
+        "type": "Link",
+        "config": {
+          "label": "Main Media",
+          "placeholder": "",
+          "select": "media",
+          "allowText": true
+        }
+      },
+      "main_media_thumbnail": {
         "type": "Image",
         "config": {
-          "label": "Main Image",
+          "label": "Main Media Thumbnail (Optional)",
           "constraint": {},
           "thumbnails": []
         }
