@@ -96,8 +96,8 @@ defineProps({
                 </nuxt-link>
             </li>
         </ul>
-        <drawing-canvas/>
-        <div class="mt-auto flex items-center justify-between px-6">
+        <drawing-canvas v-if="showMobileNav"/>
+        <div class="flex items-center justify-between px-6">
             <div class="grid gap-y-1">
                 <nuxt-link to="/colophon" class="text-gray underline">
                     Colophon
