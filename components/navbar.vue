@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ModeToggleDark from "assets/icon/mode-toggle-dark.svg";
 import ModeToggleLight from "assets/icon/mode-toggle-light.svg";
+import DrawingCanvas from "~/components/drawing-canvas.vue";
 
 const colorMode = useColorMode();
 const route = useRoute();
@@ -71,8 +72,8 @@ defineProps({
             </button>
         </div>
     </div>
-    <aside class="fixed top-0 left-0 h-dvh w-full z-20 bg-background pt-[60px] px-6 flex flex-col pb-10" :class="{'pointer-events-none opacity-0': !showMobileNav}">
-        <div class="flex justify-between items-start">
+    <aside class="md:opacity-0 md:pointer-events-none fixed top-0 left-0 h-dvh w-full z-20 bg-background pt-[60px] flex flex-col pb-10" :class="{'pointer-events-none opacity-0': !showMobileNav}">
+        <div class="flex justify-between items-start px-6">
             <div>
                 <nuxt-link to="/" class="mb-2 text-primary" @click="toggleMobileNav">
                     Oluwafemi Soetan
@@ -85,7 +86,7 @@ defineProps({
                 Close
             </button>
         </div>
-        <ul class="flex gap-x-6 mt-9">
+        <ul class="flex gap-x-6 mt-9 px-6">
             <li v-for="link in links" class="w-[48px]" @click="toggleMobileNav">
                 <nuxt-link
                     :to="link.link"
@@ -95,7 +96,8 @@ defineProps({
                 </nuxt-link>
             </li>
         </ul>
-        <div class="mt-auto flex items-center justify-between">
+        <drawing-canvas v-if="showMobileNav"/>
+        <div class="flex items-center justify-between px-6">
             <div class="grid gap-y-1">
                 <nuxt-link to="/colophon" class="text-gray underline">
                     Colophon
