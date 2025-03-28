@@ -72,7 +72,7 @@ defineProps({
             </button>
         </div>
     </div>
-    <aside class="md:opacity-0 md:pointer-events-none fixed top-0 left-0 h-[90dvh] w-full z-20 bg-background pt-[60px] flex flex-col pb-10" :class="{'pointer-events-none opacity-0': !showMobileNav}">
+    <aside class="md:opacity-0 md:pointer-events-none fixed top-0 left-0 h-[95dvh] w-full z-20 bg-background pt-[60px] flex flex-col pb-10" :class="{'pointer-events-none opacity-0': !showMobileNav}">
         <div class="flex justify-between items-start px-6">
             <div>
                 <nuxt-link to="/" class="mb-2 text-primary" @click="toggleMobileNav">
