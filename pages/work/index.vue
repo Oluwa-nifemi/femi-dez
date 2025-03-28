@@ -21,7 +21,7 @@ const explorationItems = explorations.value?.results || [];
                     <media
                         :type="work.data.main_media?.kind === 'image' ? 'image' : 'video'"
                         :src="work.data.main_media.url || ''"
-                        :thumbnail-src="work.data.main_media_thumbnail?.url || ''"
+                        :thumbnail-src="work.data.thumbnail?.url || ''"
                         class="w-fit mb-2"
                     />
                     <figcaption>

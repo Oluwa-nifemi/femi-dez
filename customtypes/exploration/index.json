@@ -18,7 +18,7 @@
           "label": "Media",
           "placeholder": "",
           "select": "media",
-          "allowText": true
+          "allowText": false
         }
       },
       "caption": {
@@ -29,11 +29,12 @@
         }
       },
       "thumbnail": {
-        "type": "Image",
+        "type": "Link",
         "config": {
-          "label": "Thumbnail (If video)",
-          "constraint": {},
-          "thumbnails": []
+          "label": "Thumbnail",
+          "placeholder": "",
+          "select": "media",
+          "allowText": false
         }
       },
       "slices": {

@@ -804,15 +804,15 @@ interface ExplorationDocumentData {
   caption: prismic.KeyTextField;
 
   /**
-   * Thumbnail (If video) field in *Exploration*
+   * Thumbnail field in *Exploration*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
    * - **API ID Path**: exploration.thumbnail
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  thumbnail: prismic.ImageField<never>;
+  thumbnail: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
    * Slice Zone field in *Exploration*
@@ -936,17 +936,6 @@ interface HomepageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice> /**
-   * Meta Title field in *Homepage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: homepage.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
    * Meta Description field in *Homepage*
    *
    * - **Field Type**: Text
@@ -954,7 +943,7 @@ interface HomepageDocumentData {
    * - **API ID Path**: homepage.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -1110,15 +1099,15 @@ interface WorkDocumentData {
   main_media: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
-   * Main Media Thumbnail (Optional) field in *Work*
+   * Thumbnail (If Video) field in *Work*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: work.main_media_thumbnail
+   * - **API ID Path**: work.thumbnail
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  main_media_thumbnail: prismic.ImageField<never>;
+  thumbnail: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
    * Name field in *Work*
@@ -1330,16 +1319,6 @@ export interface VisualImageRowSliceDefaultPrimaryMediaItem {
   variant: prismic.SelectField<"Portrait" | "Landscape">;
 
   /**
-   * Thumbnail (If video) field in *VisualMediaRow → Default → Primary → Media*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: visual_image_row.default.primary.media[].thumbnail
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  thumbnail: prismic.ImageField<never>;
-
-  /**
    * Media field in *VisualMediaRow → Default → Primary → Media*
    *
    * - **Field Type**: Link to Media
@@ -1348,6 +1327,16 @@ export interface VisualImageRowSliceDefaultPrimaryMediaItem {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   media: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Thumbnail (If Video) field in *VisualMediaRow → Default → Primary → Media*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: visual_image_row.default.primary.media[].thumbnail
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  thumbnail: prismic.LinkToMediaField<prismic.FieldState, never>;
 }
 
 /**
@@ -1412,14 +1401,14 @@ export interface WorkContentSliceImageRowPrimaryMediaRowItem {
   media: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
-   * Media Thumbnail (Optional) field in *WorkContent → Image Row → Primary → Media Row (Max 2 Images)*
+   * Thumbnail field in *WorkContent → Image Row → Primary → Media Row (Max 2 Images)*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: work_content.imageRow.primary.media_row[].media_thumbnail
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **API ID Path**: work_content.imageRow.primary.media_row[].thumbnail
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  media_thumbnail: prismic.ImageField<never>;
+  thumbnail: prismic.LinkToMediaField<prismic.FieldState, never>;
 }
 
 /**

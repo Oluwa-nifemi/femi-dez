@@ -42,15 +42,16 @@
                   "label": "Media Item",
                   "placeholder": "",
                   "select": "media",
-                  "allowText": true
+                  "allowText": false
                 }
               },
-              "media_thumbnail": {
-                "type": "Image",
+              "thumbnail": {
+                "type": "Link",
                 "config": {
-                  "label": "Media Thumbnail (Optional)",
-                  "constraint": {},
-                  "thumbnails": []
+                  "label": "Thumbnail",
+                  "placeholder": "",
+                  "select": "media",
+                  "allowText": false
                 }
               }
             }

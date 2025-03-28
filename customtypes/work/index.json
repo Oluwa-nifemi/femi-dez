@@ -18,15 +18,16 @@
           "label": "Main Media",
           "placeholder": "",
           "select": "media",
-          "allowText": true
+          "allowText": false
         }
       },
-      "main_media_thumbnail": {
-        "type": "Image",
+      "thumbnail": {
+        "type": "Link",
         "config": {
-          "label": "Main Media Thumbnail (Optional)",
-          "constraint": {},
-          "thumbnails": []
+          "label": "Thumbnail (If Video)",
+          "placeholder": "",
+          "select": "media",
+          "allowText": false
         }
       },
       "name": {

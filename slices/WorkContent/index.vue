@@ -24,7 +24,7 @@ defineProps(
           v-for="media in slice.primary.media_row"
           :type="media.media?.kind === 'image' ? 'image' : 'video'"
           :src="media.media.url || ''"
-          :thumbnail-src="media.main_media_thumbnail?.url || ''"
+          :thumbnail-src="media.thumbnail?.url || ''"
           class="w-fit mb-6"
       />
   </div>
