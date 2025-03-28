@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { client } = usePrismic();
 
-const { data: colophon } = await useAsyncData("about", () => client.getSingle("colophon"));
+const { data: colophon } = await useAsyncData("colophon", () => client.getSingle("colophon"));
 </script>
 
 <template>

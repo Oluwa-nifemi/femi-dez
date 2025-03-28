@@ -3,18 +3,18 @@ import {components} from "~/slices";
 
 const { client } = usePrismic();
 
-const { data: visuals } = await useAsyncData("about", () => client.getSingle("visual"));
+const { data: visuals } = await useAsyncData("visuals", () => client.getSingle("visual"));
 
 definePageMeta({
     layout: 'visuals'
 })
 </script>
 
-<template v-if="visuals">
+<template>
     <slice-zone
         wrapper="div"
         :components="components"
-        :slices="visuals.data.slices"
+        :slices="visuals?.data.slices || []"
         class="space-y-[120px] md:space-y-[200px]"
     />
 </template>
