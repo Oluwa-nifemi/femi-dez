@@ -3,7 +3,7 @@
         <prismic-rich-text :field="home.data.main_text"/>
     </section>
     <section class="flex space-x-3">
-        <a class="link link-animate" v-for="link in home.data.links" :href="link.link.url">
+        <a class="link link-animate" v-for="link in home.data.links" :href="link.link.url" target="_blank">
             {{link.label}}
         </a>
     </section>

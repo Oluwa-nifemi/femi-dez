@@ -27,10 +27,8 @@ const { data: colophon } = await useAsyncData("colophon", () => client.getSingle
             <p class="text-gray mb-3">
                 Technicalities
             </p>
-            <p>
-                <!-- Yeah I hard coded this. I'm bad like that 🤷🏾‍♂️ -->
-                Developed by <a href="https://www.linkedin.com/in/oluwanifemi-adeyemi-600758174/" target="_blank" class="underline">Oluwanifemi Adeyemi</a>
-            </p>
+            <!-- Yeah I hard coded this. I'm bad like that 🤷🏾‍♂️ -->
+            <p class="flex whitespace-pre">Developed by <a href="https://www.linkedin.com/in/oluwanifemi-adeyemi-600758174/" target="_blank" class="link-animate flex">Oluwanifemi Adeyemi</a></p>
         </section>
         <section class="space-y-3">
             <p class="text-gray">
@@ -39,7 +37,7 @@ const { data: colophon } = await useAsyncData("colophon", () => client.getSingle
             <p>
                 {{colophon.data.inspiration_description}}
             </p>
-            <a class="block underline" :href="link.link.url" v-for="link in colophon.data.inspiration_links">
+            <a target="_blank" class="!block link-animate" :href="link.link.url" v-for="link in colophon.data.inspiration_links">
                 {{link.link.text}}
             </a>
         </section>
@@ -50,7 +48,7 @@ const { data: colophon } = await useAsyncData("colophon", () => client.getSingle
             <p>
                 {{colophon.data.good_people_description}}
             </p>
-            <a class="block underline" :href="person.link.url" v-for="person in colophon.data.good_people">
+            <a target="_blank" class="!block link-animate" :href="person.link.url" v-for="person in colophon.data.good_people">
                 {{person.link.text}}
             </a>
         </section>
