@@ -36,6 +36,14 @@ const links = [
 const showMobileNav = ref(false);
 const toggleMobileNav = () => showMobileNav.value = !showMobileNav.value;
 
+watch(showMobileNav, (val) => {
+    if (val) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+});
+
 defineProps({
     weatherInfo: String
 })
