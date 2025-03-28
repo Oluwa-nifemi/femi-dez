@@ -403,7 +403,27 @@ interface AboutDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice> /**
+   * Meta Description field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *About*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
@@ -466,7 +486,27 @@ interface CatalogDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<CatalogDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<CatalogDocumentDataSlicesSlice> /**
+   * Meta Description field in *Catalog*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Catalog*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: catalog.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
@@ -538,17 +578,6 @@ interface CatalogPageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<CatalogPageDocumentDataSlicesSlice> /**
-   * Meta Title field in *Catalog Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: catalog_page.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
    * Meta Description field in *Catalog Page*
    *
    * - **Field Type**: Text
@@ -556,7 +585,7 @@ interface CatalogPageDocumentData {
    * - **API ID Path**: catalog_page.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -726,17 +755,6 @@ interface ColophonDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<ColophonDocumentDataSlicesSlice> /**
-   * Meta Title field in *Colophon*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: colophon.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
    * Meta Description field in *Colophon*
    *
    * - **Field Type**: Text
@@ -744,7 +762,7 @@ interface ColophonDocumentData {
    * - **API ID Path**: colophon.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -990,17 +1008,6 @@ interface VisualDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<VisualDocumentDataSlicesSlice> /**
-   * Meta Title field in *Visuals*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: visual.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
    * Meta Description field in *Visuals*
    *
    * - **Field Type**: Text
@@ -1008,7 +1015,7 @@ interface VisualDocumentData {
    * - **API ID Path**: visual.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -1199,7 +1206,27 @@ interface WorkDocumentData {
    * - **Tab**: Content
    * - **Documentation**: https://prismic.io/docs/field#slices
    */;
-  slices1: prismic.SliceZone<WorkDocumentDataSlices1Slice>;
+  slices1: prismic.SliceZone<WorkDocumentDataSlices1Slice> /**
+   * Meta Description field in *Work*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Work*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
