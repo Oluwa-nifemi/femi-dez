@@ -6,12 +6,13 @@ interface Props {
   src: string
   thumbnailSrc?: string
   innerClass?: string
+  disableOptimization?: boolean;
 }
 
 const props = defineProps<Props>()
 
 const mediaRef = ref<HTMLElement | null>(null)
-const isVisible = ref(false)
+const isVisible = ref(props.disableOptimization ?? false)
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -30,7 +31,7 @@ onMounted(() => {
 <template>
   <div ref="mediaRef">
     <template v-if="props.type === 'image'">
-      <img v-if="isVisible" :src="props.src" alt="Media Image" :class="innerClass"/>
+      <img loading="lazy" v-if="isVisible" :src="props.src" alt="Media Image" :class="innerClass"/>
     </template>
 
     <template v-else-if="props.type === 'video'">

@@ -34,9 +34,6 @@ const description = cataloguePage.value?.data.description;
                     {{ catalog.data.name }}
                 </p>
                 <prismic-image :field="catalog.data.cover_image" class="mb-3 max-w-full min-w-0"/>
-                <p>
-                    {{ catalog.data.description }}
-                </p>
             </article>
         </nuxt-link>
     </div>

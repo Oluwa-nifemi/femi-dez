@@ -23,6 +23,7 @@ const hasLandscapeImage = props.slice.primary.media.some(media => media.variant 
     :class="{'justify-between': hasLandscapeImage, 'justify-center gap-x-[200px]': !hasLandscapeImage}"
   >
       <media
+          disable-optimization
           v-for="media in slice.primary.media"
           :type="media.media.kind === 'image' ? 'image' : 'video'"
           :src="media.media.url || ''"
