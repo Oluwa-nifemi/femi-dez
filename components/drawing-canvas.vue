@@ -24,38 +24,53 @@ const getStrokeStyle = (mode: string) => mode === 'dark' ? 'white' : 'black';
 onMounted(() => {
     if (canvasRef.value) {
         ctx = canvasRef.value.getContext('2d');
-        canvasRef.value.width = canvasRef.value.scrollWidth
-        canvasRef.value.height = canvasRef.value.scrollHeight
+        const width = canvasRef.value.scrollWidth;
+        const height = canvasRef.value.scrollHeight;
+        const dpr = window.devicePixelRatio || 1;
+
+        // Set canvas width and height accounting for device pixel ratio
+        canvasRef.value.width = width * dpr;
+        canvasRef.value.height = height * dpr;
+        canvasRef.value.style.width = `${width}px`;
+        canvasRef.value.style.height = `${height}px`;
+
+
         if (ctx) {
-            ctx.lineWidth = 5;
+            ctx.scale(dpr, dpr);
+            ctx.lineWidth = 3;
             ctx.lineCap = 'round';
             ctx.strokeStyle = getStrokeStyle(colorMode.preference);
+            ctx.lineJoin = 'round';
         }
     }
 });
 
-function startDrawing(e: MouseEvent) {
+function startDrawing(e: TouchEvent) {
     drawing = true;
-    draw(e);
+    const { x, y } = getCoordinates(e);
+    const ctx = canvasRef.value?.getContext('2d');
+    ctx.strokeStyle = getStrokeStyle(colorMode.preference);
+
+    if (ctx) ctx.moveTo(x, y);
+}
+
+function draw(e: TouchEvent) {
+    if (!drawing || !ctx) return;
+    canvasHasContent.value = true;
+    const { x, y } = getCoordinates(e);
+    ctx.lineTo(x, y);
+    ctx.stroke();
 }
 
 function endDrawing() {
     drawing = false;
-    if (ctx) ctx.beginPath();
+    if (ctx) ctx.beginPath(); // reset after drawing is done
 }
 
-function draw(e: TouchEvent) {
-    canvasHasContent.value = true;
-    if (!drawing || !ctx || !canvasRef.value) return;
-
-    const rect = canvasRef.value.getBoundingClientRect();
-    const x = e.touches[0].clientX - rect.left;
-    const y = e.touches[0].clientY - rect.top;
-
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
+function getCoordinates(e: TouchEvent) {
+    const rect = canvasRef.value!.getBoundingClientRect();
+    const touch = e.touches[0];
+    return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
 }
 
 function exportImage() {
