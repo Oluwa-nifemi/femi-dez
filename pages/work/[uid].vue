@@ -25,9 +25,6 @@ const { data: work } = useAsyncData(`work-${route.params.uid}`, () => client.get
             class="space-y-6 mb-[72px]"
         />
         <div class="flex gap-y-6 gap-x-[84px] flex-col md:flex-row">
-            <a :href="work.data.project_link.url" target="_blank" class="md:!hidden link-animate">
-                {{ work.data.project_link.text }}
-            </a>
             <div>
                 <p class="mb-2 text-gray">
                     Year
@@ -61,6 +58,9 @@ const { data: work } = useAsyncData(`work-${route.params.uid}`, () => client.get
                     </li>
                 </ul>
             </div>
+            <a :href="work.data.project_link.url" target="_blank" class="md:!hidden link-animate">
+                {{ work.data.project_link.text }}
+            </a>
         </div>
         <a :href="work.data.project_link.url" target="_blank" class="max-md:!hidden md:!fixed left-6 bottom-14 link-animate">
             {{ work.data.project_link.text }}
