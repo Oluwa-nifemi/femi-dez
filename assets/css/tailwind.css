@@ -18,10 +18,11 @@
 
 @font-face {
   font-family: 'Sohne';
-  src: url('/fonts/Sohne.otf');
+  src: url('/fonts/soehne-buch.woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: '';
 }
 
 *{
