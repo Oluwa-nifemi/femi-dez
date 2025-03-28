@@ -43,7 +43,7 @@ defineProps({
 
 <template>
     <nav>
-        <ul class="mx-auto hidden md:flex gap-x-6 absolute top-[60px] md:top-10 left-1/2 -translate-x-1/2 z-10">
+        <ul class="mx-auto hidden md:flex gap-x-[1.415rem] absolute top-[60px] md:top-10 left-1/2 -translate-x-1/2 z-10">
             <li v-for="link in links" class="w-[96px]">
                 <nuxt-link :to="link.link" :class="{'text-gray': !route.path.startsWith(link.link), 'text-primary': route.path.startsWith(link.link)}">
                     {{link.label}}
