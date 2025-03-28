@@ -85,8 +85,8 @@ function exportImage() {
 async function share() {
     canvasRef.value?.toBlob(async blob => {
         const shareData = {
-            text: window.location.origin,
-            title: 'Check out my cool art!',
+            text: `Cool easter egg on ${window.location.origin}`,
+            title: window.location.origin,
             files: [new File([blob], 'artwork.png', {type: blob?.type})]
         }
 
