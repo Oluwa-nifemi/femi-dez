@@ -72,7 +72,7 @@ async function share() {
         const shareData = {
             text: window.location.origin,
             title: 'Check out my cool art!',
-            files: [new File([blob], 'art.png', {type: blob?.type})]
+            files: [new File([blob], 'artwork.png', {type: blob?.type})]
         }
 
         if (navigator.canShare(shareData)) {
