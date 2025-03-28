@@ -49,6 +49,7 @@ onMounted(() => {
 
 function startDrawing(e: TouchEvent) {
     drawing = true;
+    showControls.value = false;
     if (idleTimer) {
         clearTimeout(idleTimer);
         idleTimer = null;
@@ -117,6 +118,8 @@ async function share() {
 
 function resetCanvas() {
     canvasHasContent.value = false;
+    showControls.value = false;
+
     if (canvasRef.value) {
         const ctx = canvasRef.value?.getContext('2d');
         ctx?.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height);
