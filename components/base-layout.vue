@@ -13,7 +13,6 @@
             </p>
         </div>
     </div>
-    <scroll-to-top/>
 </template>
 <script setup>
 import "./global.css"
