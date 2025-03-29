@@ -28,7 +28,7 @@ defineProps(
           class="w-fit mb-6"
       />
   </div>
-    <p v-else>
+    <p v-else class="whitespace-pre-line">
         {{slice.primary.description}}
     </p>
 </template>

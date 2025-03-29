@@ -15,7 +15,7 @@ const { data: work } = useAsyncData(`work-${route.params.uid}`, () => client.get
             :thumbnail-src="work.data.thumbnail?.url || ''"
             class="w-fit mb-6"
         />
-        <p class="mb-6">
+        <p class="mb-6 whitespace-pre-line">
             {{work.data.description}}
         </p>
         <slice-zone
