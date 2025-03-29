@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import { components } from "~/slices";
+import {defaultMetaDescription, defaultOgImage} from "assets/seo";
 
 const route = useRoute()
 const { client } = usePrismic();
 
 const { data: work } = useAsyncData(`work-${route.params.uid}`, () => client.getByUID("work", route.params.uid as string))
+
+useSeoMeta({
+    title: work.value?.data.name,
+    ogTitle: work.value?.data.name,
+    ogDescription: work.value?.data.meta_description|| defaultMetaDescription,
+    ogImage: work.value?.data.meta_image.url|| defaultOgImage
+});
 </script>
 
 <template>

@@ -11,6 +11,11 @@ const {data: explorations} = useAsyncData("explorations", () => {
 
 const workItems = work.value?.results || [];
 const explorationItems = explorations.value?.results || [];
+
+useSeoMeta({
+    title: 'work',
+    ogTitle: 'work'
+});
 </script>
 
 <template>

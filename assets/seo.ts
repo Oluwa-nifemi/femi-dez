@@ -1,0 +1,2 @@
+export const defaultMetaDescription = 'A digital designer dedicated to crafting refined, intentional experiences across web, product, motion, and brand design. Currently designing at Analogue, I also collaborate with studios worldwide to bring ideas to life with clarity and purpose.';
+export const defaultOgImage = '/og_image.png';

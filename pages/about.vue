@@ -1,10 +1,19 @@
 <script setup>
+import {defaultMetaDescription, defaultOgImage} from "assets/seo";
+
 const {client} = usePrismic();
 
 const {data: about} = await useAsyncData("about", () => client.getSingle("about"));
 const { data: spotify } = useFetch("/api/spotify", {
     server: true,
     lazy: true
+});
+
+useSeoMeta({
+    title: 'about',
+    ogTitle: 'about',
+    ogDescription: about.value?.data.meta_description|| defaultMetaDescription,
+    ogImage: about.value?.data.meta_image.url|| defaultOgImage
 });
 </script>
 

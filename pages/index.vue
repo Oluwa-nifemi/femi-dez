@@ -9,9 +9,18 @@
     </section>
 </template>
 <script setup>
+import {defaultMetaDescription, defaultOgImage} from "assets/seo";
+
     const { client } = usePrismic();
 
     const { data: home } = await useAsyncData("home", () => client.getSingle("homepage"));
+
+    useSeoMeta({
+        title: 'home',
+        ogTitle: 'home',
+        ogDescription: home.value.data.meta_description || defaultMetaDescription,
+        ogImage: home.value.data.meta_image.url || defaultOgImage
+    });
 </script>
 <style>
 </style>

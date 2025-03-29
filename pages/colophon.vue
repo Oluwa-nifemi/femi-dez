@@ -1,7 +1,16 @@
 <script setup lang="ts">
+import {defaultMetaDescription, defaultOgImage} from "assets/seo";
+
 const { client } = usePrismic();
 
 const { data: colophon } = await useAsyncData("colophon", () => client.getSingle("colophon"));
+
+useSeoMeta({
+    title: 'colophon',
+    ogTitle: 'colophon',
+    ogDescription: colophon.value?.data.meta_description|| defaultMetaDescription,
+    ogImage: colophon.value?.data.meta_image.url|| defaultOgImage
+});
 </script>
 
 <template>

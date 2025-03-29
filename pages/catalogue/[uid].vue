@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import { components } from "~/slices";
 import {format} from "date-fns";
+import {defaultMetaDescription, defaultOgImage} from "assets/seo";
 
 const route = useRoute()
 const { client } = usePrismic();
 
 const { data: catalog } = useAsyncData(`catalog-${route.params.uid}`, () => client.getByUID("catalog", route.params.uid as string))
+
+const pageTitle = catalog.value?.data.name ? `${catalog.value?.data.name} | catalog` : "catalog";
+useSeoMeta({
+    title: pageTitle,
+    ogTitle: pageTitle,
+    ogDescription: catalog.value?.data.meta_description|| defaultMetaDescription,
+    ogImage: catalog.value?.data.meta_image.url|| defaultOgImage
+});
+
 </script>
 
 <template>

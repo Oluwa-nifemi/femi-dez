@@ -18,6 +18,12 @@ const {data: catalogs} = useAsyncData("catalogues", async () => {
 });
 
 const description = cataloguePage.value?.data.description;
+
+useSeoMeta({
+    title: 'catalogue',
+    ogTitle: 'catalogue'
+});
+
 </script>
 
 <template>
