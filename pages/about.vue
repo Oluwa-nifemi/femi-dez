@@ -67,7 +67,7 @@ useSeoMeta({
             </ul>
         </section>
         <section>
-            <p class="mb-4">
+            <p class="mb-4 text-gray">
                 Currently reading
             </p>
             <div class="grid md:grid-cols-2 gap-x-2.5 gap-y-3">
