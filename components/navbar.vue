@@ -59,7 +59,7 @@ defineProps({
             </li>
         </ul>
     </nav>
-    <div class="pt-[60px] md:pt-10 px-6  sticky top-0">
+    <div class="pt-8 md:pt-10 px-6 sticky top-0">
         <div class="flex h-10 items-start justify-between">
             <!-- I used absolute positioning for this and the dark mode toggle because trying to centralize the nav links relative
             to other content within the div is rather tricky it always veers off in a direction instead of having even margin when using mx-auto -->
@@ -80,7 +80,7 @@ defineProps({
             </button>
         </div>
     </div>
-    <aside class="md:opacity-0 md:pointer-events-none fixed top-0 left-0 h-[99.5dvh] w-full z-20 bg-background pt-[60px] flex flex-col pb-10" :class="{'pointer-events-none opacity-0': !showMobileNav}">
+    <aside class="md:opacity-0 md:pointer-events-none fixed top-0 left-0 h-[100dvh] w-full z-20 bg-background pt-8 flex flex-col pb-12" :class="{'pointer-events-none opacity-0': !showMobileNav}">
         <div class="flex justify-between items-start px-6">
             <div>
                 <nuxt-link to="/" class="mb-2 text-primary" @click="toggleMobileNav">

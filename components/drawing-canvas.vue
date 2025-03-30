@@ -149,7 +149,7 @@ function onRenderInstructions(){
                 class="w-full h-full"
             />
             <div class="w-full pointer-events-none gap-y-1 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition duration-200" :class="{'opacity-0': canvasHasContent}">
-                <typewriter :interval-between-letters="50" @finished="onRenderInstructions" text="This is a canvas (get creative!)"  class="text-primary" />
+                <typewriter :interval-between-letters="50" @finished="onRenderInstructions" text="This is a canvas (get creative!)"  class="text-gray" />
                 <typewriter :interval-between-letters="25" v-if="showEasterEgg" text="I solemnly swear I am up to no good..." class="text-gray" />
             </div>
         </div>
