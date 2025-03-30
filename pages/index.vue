@@ -16,8 +16,8 @@ import {defaultMetaDescription, defaultOgImage} from "assets/seo";
     const { data: home } = await useAsyncData("home", () => client.getSingle("homepage"));
 
     useSeoMeta({
-        title: 'Portfolio of Oluwafemi Soetan',
-        ogTitle: 'Portfolio of Oluwafemi Soetan',
+        title: 'Oluwafemi Soetan',
+        ogTitle: 'Oluwafemi Soetan',
         ogDescription: home.value.data.meta_description || defaultMetaDescription,
         ogImage: home.value.data.meta_image.url || defaultOgImage
     });

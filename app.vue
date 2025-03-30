@@ -3,9 +3,6 @@
 import {defaultMetaDescription, defaultOgImage} from "assets/seo";
 
 useSeoMeta({
-    titleTemplate: (titleChunk) => {
-        return titleChunk ? `${titleChunk} | beingfemi` : 'beingfemi';
-    },
     description: defaultMetaDescription,
     ogDescription: defaultMetaDescription,
     ogImage: defaultOgImage,
