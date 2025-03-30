@@ -80,7 +80,7 @@ defineProps({
             </button>
         </div>
     </div>
-    <aside class="md:opacity-0 md:pointer-events-none fixed top-0 left-0 h-[100dvh] w-full z-20 bg-background pt-8 flex flex-col pb-12" :class="{'pointer-events-none opacity-0': !showMobileNav}">
+    <aside class="md:opacity-0 md:pointer-events-none fixed top-0 left-0 h-[100dvh] w-full z-20 bg-background pt-8 flex flex-col pb-8" :class="{'pointer-events-none opacity-0': !showMobileNav}">
         <div class="flex justify-between items-start px-6">
             <div>
                 <nuxt-link to="/" class="mb-2 text-primary" @click="toggleMobileNav">
@@ -94,7 +94,7 @@ defineProps({
                 Close
             </button>
         </div>
-        <ul class="flex gap-x-6 mt-9 px-6">
+        <ul class="flex gap-x-6 mt-12 px-6">
             <li v-for="link in links" class="w-[48px]" @click="toggleMobileNav">
                 <nuxt-link
                     :to="link.link"
