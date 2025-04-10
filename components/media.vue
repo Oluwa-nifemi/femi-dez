@@ -35,7 +35,7 @@ onMounted(() => {
     </template>
 
     <template v-else-if="props.type === 'video'">
-      <div class="video-wrapper" v-if="isVisible">
+      <div class="video-wrapper" v-if="isVisible" :class="innerClass">
         <video
           v-if="isVisible"
           autoplay
