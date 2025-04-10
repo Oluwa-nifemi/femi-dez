@@ -12,7 +12,7 @@ const props = defineProps(
   ]),
 );
 
-const hasLandscapeImage = props.slice.primary.media.some(media => media.variant === "Landscape");
+const hasLandscapeImageAndIsRow = props.slice.primary.media.some(media => media.variant === "Landscape") && props.slice.primary.media.length > 1;
 </script>
 
 <template>
@@ -20,15 +20,15 @@ const hasLandscapeImage = props.slice.primary.media.some(media => media.variant 
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="flex flex-col md:flex-row items-center md:h-[240px] gap-y-[100px]"
-    :class="{'justify-between': hasLandscapeImage, 'justify-center gap-x-[200px]': !hasLandscapeImage}"
+    :class="{'justify-between': hasLandscapeImageAndIsRow, 'justify-center gap-x-[200px]': !hasLandscapeImageAndIsRow}"
   >
       <media
           v-for="media in slice.primary.media"
           :type="media.media.kind === 'image' ? 'image' : 'video'"
           :src="media.media.url || ''"
           :thumbnail-src="media.thumbnail?.url || ''"
-          inner-class="h-full"
-          class="max-md:h-[240px] h-full min-w-0 >img:h-full" :class="{'max-w-[193px] md:max-w-unset': media.variant === 'Portrait'}"
+          inner-class="h-full w-full object-cover"
+          class="max-md:h-[240px] h-full min-w-0 >img:h-full" :class="{'w-[193px]': media.variant === 'Portrait', 'w-[428px]': media.variant === 'Landscape'}"
       />
   </section>
 </template>
