@@ -28,7 +28,7 @@ const hasLandscapeImageAndIsRow = props.slice.primary.media.some(media => media.
           :src="media.media.url || ''"
           :thumbnail-src="media.thumbnail?.url || ''"
           inner-class="h-full w-full object-cover"
-          class="max-md:h-[240px] h-full min-w-0 >img:h-full" :class="{'md:w-[193px]': media.variant === 'Portrait', 'md:w-[360px]': media.variant === 'Landscape'}"
+          class="max-md:h-[240px] h-full min-w-0 >img:h-full w-fit" :class="{'md:w-[193px]': media.variant === 'Portrait', 'md:w-[360px]': media.variant === 'Landscape'}"
       />
   </section>
 </template>
