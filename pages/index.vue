@@ -8,11 +8,17 @@
         </a>
     </section>
     <div class="yapping-text mt-11" v-if="home.data.yapping">
-        <prismic-rich-text :field="home.data.yapping"/>
+        <prismic-rich-text
+        :field="home.data.yapping"
+        :components="{
+            label: Label,
+          }"
+        />
     </div>
 </template>
 <script setup>
 import { defaultMetaDescription, defaultOgImage } from "assets/seo";
+import Label from "../components/label.vue";
 
 const { client } = usePrismic();
 

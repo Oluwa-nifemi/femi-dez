@@ -48,7 +48,11 @@
           "label": "Yapping",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,em,strong,embed"
+          "multi": "paragraph,em,strong,embed",
+          "labels": [
+            "strikethrough",
+            "underline"
+          ]
         }
       },
       "slices": {
