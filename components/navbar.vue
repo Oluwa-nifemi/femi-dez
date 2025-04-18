@@ -7,52 +7,54 @@ const colorMode = useColorMode();
 const route = useRoute();
 
 const toggleColorMode = () => {
-    if(colorMode.preference === 'dark'){
-        colorMode.preference = 'light'
-    }else{
-        colorMode.preference = 'dark'
-    }
-}
+	if (colorMode.preference === "dark") {
+		colorMode.preference = "light";
+	} else {
+		colorMode.preference = "dark";
+	}
+};
 
 const links = [
-    {
-        link: "/work",
-        label: "Work"
-    },
-    {
-        link: "/about",
-        label: "About"
-    },
-    {
-        link: "/visuals",
-        label: "Visuals"
-    },
-    {
-        link: "/catalogue",
-        label: "Catalogue"
-    },
-]
+	{
+		link: "/work",
+		label: "Work",
+	},
+	{
+		link: "/about",
+		label: "About",
+	},
+	{
+		link: "/visuals",
+		label: "Visuals",
+	},
+	{
+		link: "/catalogue",
+		label: "Catalogs",
+	},
+];
 
 const showMobileNav = ref(false);
-const toggleMobileNav = () => showMobileNav.value = !showMobileNav.value;
+const toggleMobileNav = () => {
+	showMobileNav.value = !showMobileNav.value;
+};
 
 watch(showMobileNav, (val) => {
-    if (val) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = '';
-    }
+	if (val) {
+		document.body.style.overflow = "hidden";
+	} else {
+		document.body.style.overflow = "";
+	}
 });
 
 defineProps({
-    weatherInfo: String
-})
+	weatherInfo: String,
+});
 </script>
 
 <template>
     <nav>
-        <ul class="mx-auto hidden md:flex gap-x-[1.415rem] absolute top-[60px] md:top-10 left-1/2 -translate-x-1/2 z-30">
-            <li v-for="link in links" class="w-[96px]">
+        <ul class="mx-auto hidden md:flex gap-x-[1.415rem] absolute top-[60px] md:top-10 left-1/2 -translate-x-1/2 z-30 justify-between md:w-[452px]">
+            <li v-for="link in links">
                 <nuxt-link :to="link.link" :class="{'text-gray': !route.path.startsWith(link.link), 'text-primary': route.path.startsWith(link.link)}">
                     {{link.label}}
                 </nuxt-link>
