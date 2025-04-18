@@ -1,20 +1,24 @@
 <script setup lang="ts">
-const {client} = usePrismic();
+const { client } = usePrismic();
 
-const {data: work} = useAsyncData("works", () => {
-    return client.getByType("work")
-})
+const { data: work } = useAsyncData("works", () => {
+	return client.getByType("work");
+});
 
-const {data: explorations} = useAsyncData("explorations", () => {
-    return client.getByType("exploration")
-})
+const { data: exploration } = useAsyncData("works", () => {
+	return client.getSingle("explorations_header");
+});
+
+const { data: explorations } = useAsyncData("explorations", () => {
+	return client.getByType("exploration");
+});
 
 const workItems = work.value?.results || [];
 const explorationItems = explorations.value?.results || [];
 
 useSeoMeta({
-    title: 'work',
-    ogTitle: 'work'
+	title: "work",
+	ogTitle: "work",
 });
 </script>
 
@@ -41,7 +45,7 @@ useSeoMeta({
         Exploration
     </p>
     <p class="mb-[70px]">
-        A curated space for ideas, experiments, and creative concepts
+        {{exploration?.data.exploration_text ?? "A curated space for ideas, experiments, and creative concepts"}}
     </p>
     <ul class="grid md:gap-y-[124px] gap-y-12 mb-40">
         <li v-for="exploration in explorationItems">
