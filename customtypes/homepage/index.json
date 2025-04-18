@@ -42,6 +42,15 @@
           }
         }
       },
+      "yapping": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Yapping",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,em,strong,embed"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
