@@ -4,15 +4,17 @@ import type { Content } from "@prismicio/client";
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 const props = defineProps(
-  getSliceComponentProps<Content.VisualImageRowSlice>([
-    "slice",
-    "index",
-    "slices",
-    "context",
-  ]),
+	getSliceComponentProps<Content.VisualImageRowSlice>([
+		"slice",
+		"index",
+		"slices",
+		"context",
+	]),
 );
 
-const hasLandscapeImageAndIsRow = props.slice.primary.media.some(media => media.variant === "Landscape") && props.slice.primary.media.length > 1;
+const hasLandscapeImageAndIsRow =
+	props.slice.primary.media.some((media) => media.variant === "Landscape") &&
+	props.slice.primary.media.length > 1;
 </script>
 
 <template>
@@ -27,7 +29,7 @@ const hasLandscapeImageAndIsRow = props.slice.primary.media.some(media => media.
           :type="media.media.kind === 'image' ? 'image' : 'video'"
           :src="media.media.url || ''"
           :thumbnail-src="media.thumbnail?.url || ''"
-          inner-class="h-full w-full object-cover"
+          inner-class="h-full w-full md:object-cover"
           class="max-md:h-[240px] h-full min-w-0 >img:h-full w-fit" :class="{'md:w-[193px]': media.variant === 'Portrait', 'md:w-[360px]': media.variant === 'Landscape'}"
       />
   </section>
