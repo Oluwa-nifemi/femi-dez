@@ -1,19 +1,21 @@
 <script setup>
-import {defaultMetaDescription, defaultOgImage} from "assets/seo";
+import { defaultMetaDescription, defaultOgImage } from "assets/seo";
 
-const {client} = usePrismic();
+const { client } = usePrismic();
 
-const {data: about} = await useAsyncData("about", () => client.getSingle("about"));
+const { data: about } = await useAsyncData("about", () =>
+	client.getSingle("about"),
+);
 const { data: spotify } = useFetch("/api/spotify", {
-    server: true,
-    lazy: true
+	server: true,
+	lazy: true,
 });
 
 useSeoMeta({
-    title: 'about',
-    ogTitle: 'about',
-    ogDescription: about.value?.data.meta_description|| defaultMetaDescription,
-    ogImage: about.value?.data.meta_image.url|| defaultOgImage
+	title: "about",
+	ogTitle: "about",
+	ogDescription: about.value?.data.meta_description || defaultMetaDescription,
+	ogImage: about.value?.data.meta_image.url || defaultOgImage,
 });
 </script>
 
@@ -25,7 +27,7 @@ useSeoMeta({
         <prismic-rich-text :field="about.data.description"/>
     </section>
     <div class="flex flex-col gap-y-8 md:gap-y-[72px]">
-        <section>
+        <section v-if="about.data.experience.length > 0">
             <p class="text-gray mb-3 md:mb-6">
                 Experience
             </p>
@@ -49,7 +51,7 @@ useSeoMeta({
                 </li>
             </ul>
         </section>
-        <section>
+        <section v-if="about.data.awards.length > 0">
             <p class="text-gray mb-3 md:mb-6">
                 Awards
             </p>
@@ -66,7 +68,7 @@ useSeoMeta({
                 </li>
             </ul>
         </section>
-        <section>
+        <section v-if="about.data.currently_reading.length > 0">
             <p class="mb-4 text-gray">
                 Currently reading
             </p>
@@ -132,7 +134,7 @@ useSeoMeta({
                 </li>
             </ul>
         </section>
-        <section class="flex flex-col gap-y-3">
+        <section class="flex flex-col gap-y-3" v-if="about.data.more_things_like.length > 0">
             <p class="text-gray">
                 More things I like
             </p>
@@ -140,7 +142,7 @@ useSeoMeta({
                 {{thing.link.text}}
             </component>
         </section>
-        <section class="flex flex-col gap-y-3">
+        <section class="flex flex-col gap-y-3" v-if="about.data.more_things_dont_like.length > 0">
             <p class="text-gray">
                 More things I don’t like
             </p>
