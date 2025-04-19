@@ -18,9 +18,11 @@
             </div>
         </div>
     </div>
+    <Analytics/>
 </template>
 <script setup>
 import "./global.css";
+import { Analytics } from '@vercel/analytics/nuxt'
 defineProps({
 	wide: Boolean,
 });
