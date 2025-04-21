@@ -5,7 +5,7 @@ const { data: work } = useAsyncData("works", () => {
 	return client.getByType("work");
 });
 
-const { data: exploration } = useAsyncData("works", () => {
+const { data: exploration } = useAsyncData("explorations_header", () => {
 	return client.getSingle("explorations_header");
 });
 
