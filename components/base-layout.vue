@@ -12,8 +12,9 @@
                 <p class="text-gray text-right">
                     Saskatchewan, Canada
                 </p>
-                <p v-if="weatherInfo" class="text-gray mb-0.5">
-                    {{weatherInfo}}
+                <p class="text-gray mb-0.5">
+                    {{date}},
+                    <span v-if="weatherInfo">{{weatherInfo}}</span>
                 </p>
             </div>
         </div>
@@ -28,10 +29,29 @@ defineProps({
 });
 import Navbar from "~/components/navbar.vue";
 import { format } from "date-fns";
+
+const getCurrentDate = () => {
+  const now = new Date();
+  const utcMillis = now.getTime() + now.getTimezoneOffset() * 60000;
+  const utcMinus6 = new Date(utcMillis - (6 * 60 * 60000));
+
+  return format(utcMinus6, "h:mm a")
+}
+
+const date = ref(getCurrentDate());
+
+onMounted(() => {
+  date.value = getCurrentDate();
+
+  setInterval(() => {
+    date.value = getCurrentDate();
+  }, 1000 * 60)
+})
+
 const { data: weatherInfo } = useAsyncData(async () => {
 	const latitude = 50.8001; // Saskatchewan, Canada
 	const longitude = -104.9344;
-	const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weathercode&timezone=auto`;
+	const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weathercode`;
 
 	const response = await fetch(apiUrl);
 	const data = await response.json();
@@ -73,10 +93,7 @@ const { data: weatherInfo } = useAsyncData(async () => {
 	const weatherCondition =
 		weatherDescriptions[data.current.weathercode] || "Unknown";
 
-	// Format time
-	const formattedTime = format(new Date(data.current.time), "h:mm a"); // Example: 10:35 AM
-
-	return `${formattedTime}, ${weatherCondition} at ${temperature} °C`;
+	return `${weatherCondition} at ${temperature} °C`;
 });
 </script>
 <style>
