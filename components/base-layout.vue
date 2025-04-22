@@ -30,7 +30,7 @@ import Navbar from "~/components/navbar.vue";
 import { format } from "date-fns";
 const { data: weatherInfo } = useAsyncData(async () => {
 	const latitude = 52.9399; // Saskatchewan, Canada
-	const longitude = -106.4509;
+	const longitude = 106.4509;
 	const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weathercode&timezone=auto`;
 
 	const response = await fetch(apiUrl);
