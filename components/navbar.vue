@@ -134,7 +134,7 @@ const isExpanded = (link: NavbarLink) => {
 </script>
 
 <template>
-    <nav class="pt-9 md:pt-10 px-6 fixed top-0 z-20 w-screen">
+    <nav class="pt-9 md:pt-10 px-6 md:fixed top-0 z-20 w-screen">
         <div class="flex h-10 items-start justify-between">
             <div>
                 <nuxt-link to="/" class="mb-2 text-primary">
@@ -191,7 +191,7 @@ const isExpanded = (link: NavbarLink) => {
                 Close
             </button>
         </div>
-        <ul class="flex gap-x-6 mt-12 px-6">
+        <ul class="flex flex-col gap-y-4 mt-5 px-6">
             <li v-for="link in links" class="w-[48px]" @click="toggleMobileNav">
                 <nuxt-link
                     :to="link.link"
