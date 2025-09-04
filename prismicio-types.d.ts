@@ -833,6 +833,17 @@ interface ExplorationDocumentData {
   thumbnail: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
+   * Label field in *Exploration*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 0001, 0002 etc
+   * - **API ID Path**: exploration.label
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *Exploration*
    *
    * - **Field Type**: Slice Zone

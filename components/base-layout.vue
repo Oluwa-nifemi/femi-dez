@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-dvh w-screen pb-32 page-content">
-        <Navbar :weather-info="weatherInfo"/>
-        <div class="mx-auto pt-[42px] md:pt-7 px-6 md:px-0" :class="{'md:w-[452px]': !wide, 'md:w-[820px]': wide}">
+         <Navbar :weather-info="weatherInfo"/>
+        <div class="mx-auto pt-[42px] md:pt-9 px-6 md:px-0" :class="{'md:w-[452px]': !wide, 'md:w-[820px]': wide}">
             <slot/>
         </div>
         <div class="hidden md:flex fixed bottom-6 px-6 md:items-end justify-between w-screen z-30 flex-col md:flex-row gap-y-1">
