@@ -42,7 +42,12 @@ const { data: { value: navbarData } } = useAsyncData('navbar_counts', async (): 
   const [works, exploration, catalog, visuals] = await Promise.all([
     client.getAllByType("work"),
     client.getAllByType("exploration"),
-    client.getAllByType("catalog"),
+    client.getAllByType("catalog", {
+      orderings: {
+          field: 'document.last_publication_date',
+          direction: "desc"
+      }
+    }),
     client.getSingle("visual")
   ])
 
@@ -85,7 +90,6 @@ const links: NavbarLink[] = [
 		link: "/exploration",
 		label: "Exploration",
 		statistics: pluralizeWords("idea", navbarData?.exploration.length ?? 0),
-		items: navbarData?.exploration ?? []
 	},
 	{
 		link: "/about",

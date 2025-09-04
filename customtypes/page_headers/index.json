@@ -1,15 +1,22 @@
 {
   "format": "page",
-  "id": "explorations_header",
-  "label": "Explorations Header",
+  "id": "page_headers",
+  "label": "Page Headers",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "exploration_text": {
+      "about": {
         "type": "Text",
         "config": {
-          "label": "Exploration Text",
+          "label": "About",
+          "placeholder": ""
+        }
+      },
+      "exploration": {
+        "type": "Text",
+        "config": {
+          "label": "Exploration",
           "placeholder": ""
         }
       },

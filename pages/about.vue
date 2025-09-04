@@ -11,6 +11,10 @@ const { data: spotify } = useFetch("/api/spotify", {
 	lazy: true,
 });
 
+const { data: pageHeader } = useAsyncData("page_headers", () => {
+	return client.getSingle("page_headers");
+});
+
 useSeoMeta({
 	title: "about",
 	ogTitle: "about",
@@ -20,7 +24,10 @@ useSeoMeta({
 </script>
 
 <template>
-    <section class="flex gap-x-3 md:gap-x-5 w-full mb-6">
+    <p class="mb-6">
+       {{pageHeader?.data.about}}
+   </p>
+    <section class="flex gap-x-3 md:gap-x-3 w-full mb-6">
         <prismic-image class="flex-grow min-w-0" v-for="image in about.data.intro_images" :field="image.image"/>
     </section>
     <section class="flex flex-col gap-y-3 mb-8 md:mb-[57px]">
