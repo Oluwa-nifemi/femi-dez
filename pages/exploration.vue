@@ -5,11 +5,18 @@ const { data: pageHeader } = useAsyncData("page_headers", () => {
 	return client.getSingle("page_headers");
 });
 
-const { data: explorations } = useAsyncData("explorations", () => {
-	return client.getByType("exploration");
+const { data: explorations } = useAsyncData("explorations", async () => {
+    const [allExplorations, orderedExplorations] = await Promise.all([
+      client.getAllByType("exploration"),
+      client.getSingle("exploration_page")
+    ]);
+
+  const explorationMap = Object.fromEntries(allExplorations.map(exploration => [exploration.uid, exploration.data]));
+
+  return orderedExplorations.data.explorations.map(e => explorationMap[e.item.uid!]!)
 });
 
-const explorationItems = explorations.value?.results || [];
+const explorationItems = explorations.value || [];
 
 useSeoMeta({
 	title: "exploration",
@@ -21,16 +28,16 @@ useSeoMeta({
     <p class="mb-12">
         {{pageHeader?.data.exploration ?? "A curated space for ideas, experiments, and creative concepts"}}
     </p>
-    <ul class="grid md:gap-y-[72px] gap-y-12 mb-40">
+    <ul class="grid md:gap-y-[72px] gap-y-12 mb-12">
         <li v-for="exploration in explorationItems">
             <media
-                :type="exploration.data.media?.kind === 'image' ? 'image' : 'video'"
-                :src="exploration.data.media.url || ''"
-                :thumbnail-src="exploration.data.thumbnail?.url || ''"
+                :type="exploration.media?.kind === 'image' ? 'image' : 'video'"
+                :src="exploration.media.url || ''"
+                :thumbnail-src="exploration.thumbnail?.url || ''"
                 class="max-w-full"
             />
-            <p class="mt-2">
-                {{exploration.data.caption}}
+            <p class="mt-2" v-if="!!exploration.caption">
+                {{exploration.caption}}
             </p>
         </li>
     </ul>
