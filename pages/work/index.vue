@@ -11,9 +11,16 @@ useSeoMeta({
 	title: "work",
 	ogTitle: "work",
 });
+
+const { data: pageHeader } = useAsyncData("page_headers", () => {
+	return client.getSingle("page_headers");
+});
 </script>
 
 <template>
+    <p class="mb-8">
+        {{pageHeader?.data.work}}
+    </p>
     <ul class="grid md:gap-y-[124px] gap-y-6 mb-40">
         <li v-for="work in workItems">
             <nuxt-link :to="`work/${work.uid}`">
