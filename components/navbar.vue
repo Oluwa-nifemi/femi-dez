@@ -64,7 +64,7 @@ const { data: { value: navbarData } } = useAsyncData('navbar_counts', async (): 
       label: String(item.data.name),
       link: `/catalogue/${item.uid}`,
     })),
-    visuals: visuals.data.slices.length
+    visuals: visuals.data.slices.map(slice => slice.primary.media.length).reduce((a, b) => a + b)
   }
 })
 
