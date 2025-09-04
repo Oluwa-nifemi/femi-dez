@@ -69,6 +69,7 @@ type NavbarLink = {
   label: string;
   statistics: string;
   items?: DropdownItem[];
+  external?: boolean;
 }
 
 const pluralizeWords = (word: string, count: number) => `${count} ${word}${count === 1 ? "" : "s"}`
@@ -89,7 +90,26 @@ const links: NavbarLink[] = [
 	{
 		link: "/about",
 		label: "About",
-		statistics: "100 years"
+		statistics: "100 years",
+		items: [
+    		{
+        		label: "Cosmos",
+        		link: "https://www.cosmos.so/beingfemi"
+    		},
+    		{
+        		label: "Inventory",
+        		link: "https://inventory.beingfemi.com/"
+    		},
+      {
+        		label: "Twitter",
+        		link: "https://x.com/femidasilvaa"
+    		},
+    		{
+        		label: "Pinterest",
+        		link: "https://www.pinterest.com/beingfemi/"
+    		}
+		],
+		external: true
 	},
 	{
 		link: "/visuals",
@@ -140,6 +160,7 @@ const isExpanded = (link: NavbarLink) => {
                                 :to="item.link"
                                 :class="{'text-gray': route.path !== item.link, 'text-primary': route.path === item.link}"
                                 class="hover:text-primary duration-75"
+                                :target="link.external ? '_blank' : undefined"
                             >
                                 {{item.label}}
                             </nuxt-link>
