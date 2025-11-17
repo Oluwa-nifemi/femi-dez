@@ -1,0 +1,39 @@
+{
+  "format": "page",
+  "id": "page_headers",
+  "label": "Page Headers",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "about": {
+        "type": "Text",
+        "config": {
+          "label": "About",
+          "placeholder": ""
+        }
+      },
+      "exploration": {
+        "type": "Text",
+        "config": {
+          "label": "Exploration",
+          "placeholder": ""
+        }
+      },
+      "work": {
+        "type": "Text",
+        "config": {
+          "label": "Work",
+          "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    }
+  }
+}

@@ -1,16 +1,27 @@
 {
   "format": "page",
-  "id": "explorations_header",
-  "label": "Explorations Header",
+  "id": "exploration_page",
+  "label": "Exploration Page",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "exploration_text": {
-        "type": "Text",
+      "explorations": {
+        "type": "Group",
         "config": {
-          "label": "Exploration Text",
-          "placeholder": ""
+          "label": "Explorations",
+          "repeat": true,
+          "fields": {
+            "item": {
+              "type": "Link",
+              "config": {
+                "label": "Exploration Item",
+                "select": "document",
+                "repeat": false,
+                "customtypes": ["exploration"]
+              }
+            }
+          }
         }
       },
       "slices": {

@@ -833,6 +833,17 @@ interface ExplorationDocumentData {
   thumbnail: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
+   * Label field in *Exploration*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 0001, 0002 etc
+   * - **API ID Path**: exploration.label
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *Exploration*
    *
    * - **Field Type**: Slice Zone
@@ -891,60 +902,77 @@ export type ExplorationDocument<Lang extends string = string> =
     Lang
   >;
 
-type ExplorationsHeaderDocumentDataSlicesSlice = never;
+/**
+ * Item in *Exploration Page → Explorations*
+ */
+export interface ExplorationPageDocumentDataExplorationsItem {
+  /**
+   * Exploration Item field in *Exploration Page → Explorations*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exploration_page.explorations[].item
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  item: prismic.ContentRelationshipField<"exploration">;
+}
+
+type ExplorationPageDocumentDataSlicesSlice = never;
 
 /**
- * Content for Explorations Header documents
+ * Content for Exploration Page documents
  */
-interface ExplorationsHeaderDocumentData {
+interface ExplorationPageDocumentData {
   /**
-   * Exploration Text field in *Explorations Header*
+   * Explorations field in *Exploration Page*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: explorations_header.exploration_text
+   * - **API ID Path**: exploration_page.explorations[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  exploration_text: prismic.KeyTextField;
+  explorations: prismic.GroupField<
+    Simplify<ExplorationPageDocumentDataExplorationsItem>
+  >;
 
   /**
-   * Slice Zone field in *Explorations Header*
+   * Slice Zone field in *Exploration Page*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: explorations_header.slices[]
+   * - **API ID Path**: exploration_page.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ExplorationsHeaderDocumentDataSlicesSlice> /**
-   * Meta Title field in *Explorations Header*
+  slices: prismic.SliceZone<ExplorationPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *Exploration Page*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: explorations_header.meta_title
+   * - **API ID Path**: exploration_page.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */;
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Explorations Header*
+   * Meta Description field in *Exploration Page*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: explorations_header.meta_description
+   * - **API ID Path**: exploration_page.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Explorations Header*
+   * Meta Image field in *Exploration Page*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: explorations_header.meta_image
+   * - **API ID Path**: exploration_page.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -952,18 +980,18 @@ interface ExplorationsHeaderDocumentData {
 }
 
 /**
- * Explorations Header document from Prismic
+ * Exploration Page document from Prismic
  *
- * - **API ID**: `explorations_header`
+ * - **API ID**: `exploration_page`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ExplorationsHeaderDocument<Lang extends string = string> =
+export type ExplorationPageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
-    Simplify<ExplorationsHeaderDocumentData>,
-    "explorations_header",
+    Simplify<ExplorationPageDocumentData>,
+    "exploration_page",
     Lang
   >;
 
@@ -1076,6 +1104,73 @@ export type HomepageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<HomepageDocumentData>,
     "homepage",
+    Lang
+  >;
+
+type PageHeadersDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Page Headers documents
+ */
+interface PageHeadersDocumentData {
+  /**
+   * About field in *Page Headers*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page_headers.about
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  about: prismic.KeyTextField;
+
+  /**
+   * Exploration field in *Page Headers*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page_headers.exploration
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  exploration: prismic.KeyTextField;
+
+  /**
+   * Work field in *Page Headers*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page_headers.work
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  work: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Page Headers*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page_headers.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PageHeadersDocumentDataSlicesSlice>;
+}
+
+/**
+ * Page Headers document from Prismic
+ *
+ * - **API ID**: `page_headers`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PageHeadersDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PageHeadersDocumentData>,
+    "page_headers",
     Lang
   >;
 
@@ -1334,8 +1429,9 @@ export type AllDocumentTypes =
   | CatalogPageDocument
   | ColophonDocument
   | ExplorationDocument
-  | ExplorationsHeaderDocument
+  | ExplorationPageDocument
   | HomepageDocument
+  | PageHeadersDocument
   | VisualDocument
   | WorkDocument;
 
@@ -1692,13 +1788,17 @@ declare module "@prismicio/client" {
       ExplorationDocument,
       ExplorationDocumentData,
       ExplorationDocumentDataSlicesSlice,
-      ExplorationsHeaderDocument,
-      ExplorationsHeaderDocumentData,
-      ExplorationsHeaderDocumentDataSlicesSlice,
+      ExplorationPageDocument,
+      ExplorationPageDocumentData,
+      ExplorationPageDocumentDataExplorationsItem,
+      ExplorationPageDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataLinksItem,
       HomepageDocumentDataSlicesSlice,
+      PageHeadersDocument,
+      PageHeadersDocumentData,
+      PageHeadersDocumentDataSlicesSlice,
       VisualDocument,
       VisualDocumentData,
       VisualDocumentDataSlicesSlice,
